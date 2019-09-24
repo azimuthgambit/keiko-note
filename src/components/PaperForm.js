@@ -25,14 +25,12 @@ class PaperForm extends React.Component {
       abstract: this.abstractRef.current.value
     }
     this.props.addPaper(paper);
-    // refresh the form
-    e.currentTarget.reset();
-    this.props.togglePaperForm();
+    this.props.togglePaperForm();  // clears the form when toggled off and back on again
   }
 
   render() {
     const modalContent = (
-       <form className="container modal" onSubmit={this.enterPaper} >
+      <form className="container modal" >
          <label>Title</label>
          <input name="title" ref={this.titleRef} type="text" placeholder="Title" />
          <label>Authors</label>
@@ -50,7 +48,8 @@ class PaperForm extends React.Component {
          <label>Abstract</label>
          <input name="abstractMed" ref={this.abstractRef} type="text" placeholder="Abstract" />         
          <div className="buttons-row">
-           <button type="submit" className="btn-modal" >Add Paper</button>
+           {/* <button type="submit" className="btn-modal" >Add Paper</button> */}
+           <button type="button" className="btn-modal" onClick={this.enterPaper}>Add Paper</button>
            <button type="button" className="btn-modal" onClick={this.props.togglePaperForm}>Cancel / Close</button>
          </div>
        </form>  

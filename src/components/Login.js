@@ -22,7 +22,7 @@ const Login = (props) => (
     <button 
       className="facebook" 
       onClick={() => props.authenticate('Facebook')}
-    >
+      >
       Log In With Facebook
     </button>
     <br></br>
@@ -30,8 +30,8 @@ const Login = (props) => (
     <p>Or</p>
 
     <button 
-      className="anonymous" 
-      onClick={() => props.continueAsGuest()}
+      className="guest" 
+      onClick={() => props.authenticate('guest')}
       >
       Continue as Guest
     </button>
@@ -39,8 +39,7 @@ const Login = (props) => (
 );
 
 Login.propTypes = {
-  authenticate: PropTypes.func.isRequired,
-  continueAsGuest: PropTypes.func.isRequired
+  authenticate: PropTypes.func.isRequired
 };
 
 export default Login;

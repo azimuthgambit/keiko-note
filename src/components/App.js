@@ -4,7 +4,7 @@ import base, { firebaseApp } from "../base";
 // import PropTypes from "prop-types";
 import PaperForm from "./PaperForm";
 import Login from "./Login";
-import Card from "./Card";
+import CardSection from "./CardSection";
 import samplePapers from "../sample-papers";
 
 class App extends React.Component {
@@ -14,16 +14,8 @@ class App extends React.Component {
     hidePaperForm: true
   };
 
-  continueAsGuest = () => {
-    this.setState({ 
-      papers: {},
-      uid: 'guest',
-      hidePaperForm: true
-    });    
-  }
-  
   componentDidMount() {
-    // return if running in guest mode
+    // return and skip Firebase Auth if running in guest mode
     if (this.state.uid === 'guest') { return; }
 
     firebase.auth().onAuthStateChanged(user => {
@@ -35,6 +27,10 @@ class App extends React.Component {
   }
 
   authenticate = provider => {
+    if (provider === 'guest') {
+      this.setState({ uid: 'guest', });
+      return;
+    }
     const authProvider = new firebase.auth[`${provider}AuthProvider`]();
     firebaseApp
       .auth()
@@ -71,13 +67,9 @@ class App extends React.Component {
       // base.reset()
     }
   }
-
-  togglePaperForm = () => { this.setState({ hidePaperForm : !this.state.hidePaperForm }) };
   
-  loadSamplePapers = () => { this.setState({ papers: samplePapers }); }
-
   addPaper = paper => {
-    // take a copy of the existing state, do not mutate state
+    // take copy of state
     const papers = { ...this.state.papers };
     // add new paper to papers variable
     papers[`paper${Date.now()}`] = paper;
@@ -88,16 +80,21 @@ class App extends React.Component {
   deletePaper = key => {
     // take copy of state
     const papers = {...this.state.papers};
-    // when logged in, update the state for firebase
-    if (this.state.uid !== 'guest') {
-      papers[key] = null;
-    // in guest mode, use the delete method
-    } else if (this.state.uid === 'guest') {
-      delete papers[key];
-    }
+    // null out the target entry
+    papers[key] = null;
+    // pass to state
     this.setState({ papers });
   }
+  
+  loadSamplePapers = () => { this.setState({ papers: samplePapers }); }  // this method wipes out existing papers
+  // loadSamplePapers = () => { 
+  //   // Object.values(samplePapers).map(paper => console.log(paper))
+  //   Object.values(samplePapers).map(paper => this.addPaper(paper))
+  //   this method runs too fast for state, slow it down with async or callbacks for each iteration
+  // }
 
+  togglePaperForm = () => { this.setState({ hidePaperForm : !this.state.hidePaperForm }) };
+  
   render() {
     const logoutBtn = this.state.uid? <button onClick={this.logout}>Log Out</button> : <div></div> ;
     const enterPaperBtn = this.state.uid? <button onClick={this.togglePaperForm} >Enter New Paper</button> : <div></div> ;
@@ -128,20 +125,24 @@ class App extends React.Component {
     );
 
     const cardSection = (
-      <div className="container">
-        <ul className="cards-ul">
-          {Object.keys(this.state.papers).map(key => (
-            <Card
-              key={key}
-              index={key}
-              details={this.state.papers[key]}
-              deletePaper={this.deletePaper}
-              // cardUp={this.cardUp}
-              // cardDn={this.cardDn}
-            />
-          ))}
-        </ul>
-      </div>
+      <CardSection 
+        papers={this.state.papers}
+        deletePaper={this.deletePaper}
+      />
+      // <div className="container">
+      //   <ul className="cards-ul">
+      //     {Object.keys(this.state.papers).map(key => (
+      //       <Card
+      //         key={key}
+      //         index={key}
+      //         details={this.state.papers[key]}
+      //         deletePaper={this.deletePaper}
+      //         // cardUp={this.cardUp}
+      //         // cardDn={this.cardDn}
+      //       />
+      //     ))}
+      //   </ul>
+      // </div>
     );
 
     // check if logged in
@@ -151,7 +152,6 @@ class App extends React.Component {
           {welcomeBar}
           <Login 
             authenticate={this.authenticate}
-            continueAsGuest={this.continueAsGuest}
           />
         </div>
       );

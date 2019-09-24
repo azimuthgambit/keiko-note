@@ -19,18 +19,20 @@ class Card extends React.Component {
   }
 
   state = {
-    hideAbstract: true
+    hideAbstract: true,
   };
 
   render() {
+    if (!this.props.details) { return null; } // preclude error due to null props
+
     const { title, authors, journal, year, timestamp, pubMed, keywords, findings, abstract} = this.props.details;
 
-    const titleCard = title ? title : '';
-    // const authorsCard = authors ? authors : '';
-    const journalCard = journal ? journal : '';
-    const yearCard = year ? year : '';
-    const timestampCard = timestamp ? timestamp : '';
-    const pubMedCard = pubMed ? pubMed : '';
+    const titleCard = title ? title : '(title)';
+    const authorsCard = authors ? authors : '(authors)';
+    const journalCard = journal ? journal : '(journal)';
+    const yearCard = year ? year : '(year)';
+    // const timestampCard = timestamp ? timestamp : '...';
+    // const pubMedCard = pubMed ? pubMed : '...';
     const keywordsCard = keywords ? keywords : '';
     const findingsCard = findings ? findings : '';
     const abstractCard = abstract ? abstract : '';
@@ -46,42 +48,27 @@ class Card extends React.Component {
     // console.log(abstract);
 
     // const authorsFew = authors.split(/[,]/).slice(0,3); // only the first three authors, separated by comma
-    const authorsFew = authors ? authors.split(/[,]/).slice(0,3) : '' ; // only the first three authors, separated by comma
+    const authorsFew = authorsCard ? authors.split(/[,]/).slice(0,3) : '' ; // only the first three authors, separated by comma
     // const pubMedLink = () => 'https://www.ncbi.nlm.nih.gov/pubmed/' + pubMed ;
-    const pubMedLink = () => 'https://www.ncbi.nlm.nih.gov/pubmed/' + pubMedCard ;
+    const pubMedLink = () => 'https://www.ncbi.nlm.nih.gov/pubmed/' + pubMed ;
     const abstractText = this.state.hideAbstract ? '' : abstractCard;
     const toggleAbstract = () => { this.setState({ hideAbstract : !this.state.hideAbstract }) };
     
     // <li className='card' id={timestamp}>
     // <h6 className='bold card-title'>{title}</h6>
     return (
-      <li className='card' id={timestampCard}>
+      <li className='card' id={timestamp}>
         <div>
           <h6 className='bold card-title'>{titleCard}</h6>
           <p className='card-authors'>
             {authorsFew}, et al. 
-            <span>   </span> 
-            <i>{journalCard}</i> 
-            {yearCard} 
-            <span>   </span> 
-            <a 
-              className='card-link' 
-              href={pubMedLink()} 
-              rel='noopener noreferrer' 
-              target='_blank'
-            >
-              pubmed
-            </a> 
+            <span>   </span> <i>{journalCard}</i> {yearCard} <span>   </span> 
+            <a className='card-link' href={pubMedLink()} rel='noopener noreferrer' target='_blank'>pubmed</a> 
           </p>
           <p ><span className='bold card-keywords'>Keywords:</span> {keywordsCard}</p>
           <p ><span className='bold card-findings'>Findings:</span> {findingsCard}</p>
-          <span 
-            className='bold abstract-toggle'
-            onClick={toggleAbstract}
-          > Abstract </span>
-          <p className='{abstractClass}'>
-            {abstractText}
-          </p>
+          <span className='bold abstract-toggle' onClick={toggleAbstract} > Abstract </span>
+          <p className='{abstractClass}'>{abstractText}</p>
         </div>
         <div className='card-btn-col'>
           <button 
