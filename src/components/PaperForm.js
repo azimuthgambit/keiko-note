@@ -48,7 +48,6 @@ class PaperForm extends React.Component {
          <label>Abstract</label>
          <input name="abstractMed" ref={this.abstractRef} type="text" placeholder="Abstract" />         
          <div className="buttons-row">
-           {/* <button type="submit" className="btn-modal" >Add Paper</button> */}
            <button type="button" className="btn-modal" onClick={this.enterPaper}>Add Paper</button>
            <button type="button" className="btn-modal" onClick={this.props.togglePaperForm}>Cancel / Close</button>
          </div>

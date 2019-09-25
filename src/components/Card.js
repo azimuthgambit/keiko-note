@@ -23,39 +23,24 @@ class Card extends React.Component {
   };
 
   render() {
-    if (!this.props.details) { return null; } // preclude error due to null props
+    // return if props are null to preclude error
+    if (!this.props.details) { return null; } 
 
     const { title, authors, journal, year, timestamp, pubMed, keywords, findings, abstract} = this.props.details;
 
     const titleCard = title ? title : '(title)';
-    const authorsCard = authors ? authors : '(authors)';
     const journalCard = journal ? journal : '(journal)';
     const yearCard = year ? year : '(year)';
-    // const timestampCard = timestamp ? timestamp : '...';
-    // const pubMedCard = pubMed ? pubMed : '...';
     const keywordsCard = keywords ? keywords : '';
     const findingsCard = findings ? findings : '';
     const abstractCard = abstract ? abstract : '';
 
-    // console.log(title);
-    // console.log(authors);
-    // console.log(journal);
-    // console.log(year);
-    // console.log(timestamp);
-    // console.log(pubMed);
-    // console.log(keywords);
-    // console.log(findings);
-    // console.log(abstract);
-
-    // const authorsFew = authors.split(/[,]/).slice(0,3); // only the first three authors, separated by comma
-    const authorsFew = authorsCard ? authors.split(/[,]/).slice(0,3) : '' ; // only the first three authors, separated by comma
-    // const pubMedLink = () => 'https://www.ncbi.nlm.nih.gov/pubmed/' + pubMed ;
+    // card should display only the first three authors, separated by comma, or placeholder if blank
+    const authorsFew = authors ? authors.split(/[,]/).slice(0,3) : '(authors)' ;
     const pubMedLink = () => 'https://www.ncbi.nlm.nih.gov/pubmed/' + pubMed ;
     const abstractText = this.state.hideAbstract ? '' : abstractCard;
     const toggleAbstract = () => { this.setState({ hideAbstract : !this.state.hideAbstract }) };
     
-    // <li className='card' id={timestamp}>
-    // <h6 className='bold card-title'>{title}</h6>
     return (
       <li className='card' id={timestamp}>
         <div>
@@ -75,6 +60,7 @@ class Card extends React.Component {
             className='card-btn card-delete'
             onClick={() => this.props.deletePaper(this.props.index)}
           >×</button>
+          {/* to do: add card up / card down buttons for sorting */}
           {/* <button 
             className='card-btn card-up card-mid'
             onClick={() => this.props.cardUp(this.props.index)}
