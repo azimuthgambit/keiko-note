@@ -1,0 +1,45 @@
+/* Possible Animations:
+
+add card
+delete card
+
+mount abstract
+unmount abstract
+
+mount modal form
+unmount modal form
+
+appear Must set transitionAppear={true} on animation component
+*/
+
+.card-enter
+  transform-origin:top
+  transform: scaleY(0)
+  opacity:0
+  transition .4s
+  &.card-enter-active
+    transform: scaleY(1)
+    opacity:1
+
+.card-exit
+  transition .2s
+  transform: translateY(0)
+  &.card-exit-active
+    transform:translateY(-50%)
+    opacity:0
+
+.abstract-enter
+  transform-origin:top
+  transform: scaleY(0)
+  transition .2s
+  opacity:0
+  &.abstract-enter-active
+    transform: scaleY(1)
+    opacity:1
+
+.abstract-exit
+  transform: translateY(0)
+  transition .2s
+  &.abstract-exit-active
+    transform:translateY(-50%)
+    opacity:0

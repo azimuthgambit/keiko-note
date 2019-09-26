@@ -30,7 +30,7 @@ class PaperForm extends React.Component {
 
   render() {
     const modalContent = (
-      <form className="container modal" >
+      <form className="container modal-zoom" >
          <label>Title</label>
          <input name="title" ref={this.titleRef} type="text" placeholder="Title" />
          <label>Authors</label>

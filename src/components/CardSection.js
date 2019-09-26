@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './Card';
 import PropTypes from 'prop-types';
-// import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 class CardSection extends React.Component {
   static propTypes = {  
@@ -10,30 +10,40 @@ class CardSection extends React.Component {
   }
 
   renderCards = (key) => {
+    const paper = this.props.papers[key];
+    const deletePaper = this.props.deletePaper;
+    // const transitionOptions = {
+    //   classNames: "card",
+    //   key,
+    //   timeout:{ enter:500, exit:500 }
+    // };
+    if(!paper) return null;
+
     return(
-      <Card
+      <CSSTransition
+        classNames="card"
         key={key}
-        index={key}
-        details={this.props.papers[key]}
-        deletePaper={this.props.deletePaper}
-      />
+        timeout={{ enter:400, exit:200 }}
+      >
+        <Card
+          key={key}
+          index={key}
+          details={paper}
+          deletePaper={deletePaper}
+        />
+      </CSSTransition>
     );
 }
 
 render() {
-  // console.log(this.props.papers);
-  const papers = Object.keys(this.props.papers);
+  const papers = Object.keys(this.props.papers).reverse();
   
   return(
-    
     <div className="container">
-      {/* <TransitionGroup component="ul" className="cards-ul">
+      <TransitionGroup component="ul" className="cards-ul">
         {papers.map(this.renderCards)}
-      </TransitionGroup> */}
-
-      {papers.map(this.renderCards)}
+      </TransitionGroup>
     </div>
-
     );
   }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 class Card extends React.Component {
   static propTypes = {
@@ -22,9 +23,21 @@ class Card extends React.Component {
     hideAbstract: true,
   };
 
+  renderAbstract = (abstract) => {
+    if (!abstract || this.state.hideAbstract) return null;
+    return (
+      <CSSTransition
+        classNames="abstract"
+        timeout={{ enter:150, exit:150 }}
+      >
+        <p>{abstract}</p>
+      </CSSTransition>
+    );
+  }
+
   render() {
     // return if props are null to preclude error
-    if (!this.props.details) { return null; } 
+    if (!this.props.details) return null;
 
     const { title, authors, journal, year, timestamp, pubMed, keywords, findings, abstract} = this.props.details;
 
@@ -33,12 +46,10 @@ class Card extends React.Component {
     const yearCard = year ? year : '(year)';
     const keywordsCard = keywords ? keywords : '';
     const findingsCard = findings ? findings : '';
-    const abstractCard = abstract ? abstract : '';
 
-    // card should display only the first three authors, separated by comma, or placeholder if blank
+    // render only the first three authors, separated by comma, or placeholder if null
     const authorsFew = authors ? authors.split(/[,]/).slice(0,3) : '(authors)' ;
     const pubMedLink = () => 'https://www.ncbi.nlm.nih.gov/pubmed/' + pubMed ;
-    const abstractText = this.state.hideAbstract ? '' : abstractCard;
     const toggleAbstract = () => { this.setState({ hideAbstract : !this.state.hideAbstract }) };
     
     return (
@@ -53,7 +64,9 @@ class Card extends React.Component {
           <p ><span className='bold card-keywords'>Keywords:</span> {keywordsCard}</p>
           <p ><span className='bold card-findings'>Findings:</span> {findingsCard}</p>
           <span className='bold abstract-toggle' onClick={toggleAbstract} > Abstract </span>
-          <p className='{abstractClass}'>{abstractText}</p>
+          <TransitionGroup className="abstract">
+            {this.renderAbstract(abstract)}
+          </TransitionGroup>
         </div>
         <div className='card-btn-col'>
           <button 

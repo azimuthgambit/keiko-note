@@ -75,7 +75,7 @@ class App extends React.Component {
 
   deletePaper = key => {
     // get confirmation from user
-    if (!window.confirm("Really delete this paper from the database?")) { return; }
+    if (!window.confirm("Delete this paper?")) { return; }
     // take copy of state
     const papers = {...this.state.papers};
     // when logged in, update the state for firebase
