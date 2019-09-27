@@ -89,20 +89,19 @@ class App extends React.Component {
     this.setState({ papers });
   }
 
-  loadSamplePapers = () => { 
-    // take a copy of state
-    const papers = {...this.state.papers};
-    // take a copy of the samples
-    const samples = {...samplePapers};
-    // pop in the samples as duplicates with unique keys
-    papers[`paper${Date.now()}`]   = samples.paper1;
-    papers[`paper${Date.now()+1}`] = samples.paper2;
-    // or use this method to avoid creating duplicates
-    // Object.assign(papers, samplePapers);
-    // pass to state
-    this.setState({ papers });
+  addPaperDelay = paper => {
+    return new Promise((resolve, reject) => {
+      setTimeout(p => {
+        resolve(this.addPaper(p));
+      }, 300, paper)
+    });
+  };
+
+  loadSamplePapers = async () => {
+    for (const p in samplePapers) {
+      await this.addPaperDelay(samplePapers[p]);
+    }
   }
-  
 
   render() {
     
