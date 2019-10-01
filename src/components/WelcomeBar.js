@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PaperForm from './PaperForm';
-// import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 class WelcomeBar extends React.Component {
   static propTypes = {
@@ -18,22 +17,6 @@ class WelcomeBar extends React.Component {
   }
 
   togglePaperForm = () => { this.setState({ hidePaperForm : !this.state.hidePaperForm }) };
-
-  // renderPaperForm = () => {
-  //   return (
-  //     <CSSTransition
-  //       classNames="card"
-  //       // key={Date.now()}
-  //       timeout={{ enter:500, exit:500 }}
-  //     >
-  //       <PaperForm 
-  //         hidePaperForm={this.state.hidePaperForm}
-  //         togglePaperForm={this.togglePaperForm}
-  //         addPaper={this.props.addPaper}
-  //       />
-  //     </CSSTransition>
-  //   );
-  // }
 
   render() {
 
@@ -84,9 +67,6 @@ class WelcomeBar extends React.Component {
         <div className="welcome">
           {welcomeBar}
           {buttonsRow}
-          {/* <TransitionGroup component="div" className="paper-form">
-            {this.renderPaperForm}
-          </TransitionGroup> */}
           {paperFormDiv}
         </div>
       );
@@ -96,10 +76,8 @@ class WelcomeBar extends React.Component {
       <div className="welcome">
         {welcomeBar}
         {buttonsRow}
-        {/* {paperFormDiv} */}
       </div>
     );
-
   }
 }
 

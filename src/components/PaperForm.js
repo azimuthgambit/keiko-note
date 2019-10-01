@@ -57,9 +57,7 @@ class PaperForm extends React.Component {
     );
   }
   
-  componentDidMount() {
-    console.log('paper form mounting!')
-  }
+  // componentDidMount() { console.log('paper form mounting!') }
 
 }
 
