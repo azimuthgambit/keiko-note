@@ -4,49 +4,80 @@
   -webkit-transform: scaleY(0);
           transform: scaleY(0);
   opacity: 0;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
 }
-.card-enter.card-enter-active {
+.card-enter-active {
   -webkit-transform: scaleY(1);
           transform: scaleY(1);
   opacity: 1;
+  -webkit-transition: opacity 500ms, -webkit-transform 500ms;
+  transition: opacity 500ms, -webkit-transform 500ms;
+  transition: transform 500ms, opacity 500ms;
+  transition: transform 500ms, opacity 500ms, -webkit-transform 500ms;
 }
 .card-exit {
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-  -webkit-transform: translateY(0);
-          transform: translateY(0);
-}
-.card-exit.card-exit-active {
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  opacity: 0;
-}
-.abstract-enter {
   -webkit-transform-origin: top;
           transform-origin: top;
-  -webkit-transform: scaleY(0);
-          transform: scaleY(0);
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-  opacity: 0;
-}
-.abstract-enter.abstract-enter-active {
   -webkit-transform: scaleY(1);
           transform: scaleY(1);
   opacity: 1;
 }
-.abstract-exit {
-  -webkit-transform: translateY(0);
-          transform: translateY(0);
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-}
-.abstract-exit.abstract-exit-active {
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+.card-exit-active {
+  -webkit-transform: scaleY(0);
+          transform: scaleY(0);
   opacity: 0;
+  -webkit-transition: opacity 500ms, -webkit-transform 500ms;
+  transition: opacity 500ms, -webkit-transform 500ms;
+  transition: transform 500ms, opacity 500ms;
+  transition: transform 500ms, opacity 500ms, -webkit-transform 500ms;
+}
+.cards-div div.card-exit {
+  height: 0;
+}
+.cards-div div.card-exit-active,
+.cards-div div.card-exit-done {
+  position: absolute;
+}
+.modal-fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 500ms;
+  animation-name: fade;
+  animation-duration: 500ms;
+}
+@-webkit-keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes cardslide {
+  100% {
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+@keyframes cardslide {
+  100% {
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+@-webkit-keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 /* Base Styles   ... adapted from getskeleton.com
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -62,7 +93,6 @@ body {
   line-height: 1.6;
   font-weight: 400;
   font-family: Calibri, sans-serif;
-/* font-family: 'Lato', Arial, sans-serif; */
   background-color: #121212;
   color: #fffafa;
 }
@@ -70,21 +100,6 @@ body {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 * {
   box-sizing: border-box;
-}
-.labpicker {
-  margin: 2rem auto;
-  text-align: center;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
-}
-.labpicker > div {
-  margin: 1rem auto;
-}
-.labpicker-input {
-  width: 30rem;
 }
 .welcome-row {
   display: -webkit-box;
@@ -108,7 +123,6 @@ body {
   color: #fffafa;
 }
 .container {
-  width: 80%;
   min-width: 300px;
   max-width: 900px;
   margin: auto;
@@ -133,6 +147,8 @@ button {
   cursor: pointer;
 }
 .buttons-row {
+  width: 300px;
+  margin: auto;
   padding-bottom: 1rem;
   display: -webkit-box;
   display: flex;
@@ -148,61 +164,17 @@ button {
 .btn-modal {
   margin-top: 1.3rem;
 }
-/* MODAL FADE FOR LOGIN  */
-.modal-fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 0.5s;
-  animation-name: fade;
-  animation-duration: 0.5s;
-}
-@-webkit-keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-/* MODAL ZOOM FOR ENTER PAPER FORM  */
-.modal-zoom {
-  -webkit-animation-name: zoom;
-  -webkit-animation-duration: 0.3s;
-  animation-name: zoom;
-  animation-duration: 0.3s;
-}
-@-webkit-keyframes zoom {
-  from {
-    -webkit-transform: scale(0.75);
-  }
-  to {
-    -webkit-transform: scale(1);
-  }
-}
-/* CARDS FORMATTING */
-.cards-ul {
+.cards-div {
   -webkit-padding-start: 0;
           padding-inline-start: 0;
 }
 .card {
+  position: relative;
   margin: 1rem 0;
   padding: 0.5rem 0.1rem 0.5rem 1rem;
   color: #fffafa;
-  border-radius: 0.5rem;
-  border: 1px solid #ccc;
-  display: grid;
-  grid-template-columns: auto 4rem;
-}
-.card-btn-col {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
-  -webkit-box-pack: start;
-          justify-content: flex-start;
-}
-.card-mid {
-  margin: 0.5rem 0;
+  border-radius: 8px;
+  border: 1px solid #aaa;
 }
 .card-btn {
   font-size: 2rem;
@@ -211,8 +183,15 @@ button {
   padding: 0 0.8rem;
   width: 3rem;
 }
-.card-fadeout {
-  opacity: 0;
+.card-delete-btn {
+  display: block;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border-color: #6c6c6c;
+}
+.card-title {
+  margin-right: 40px;
 }
 .card > p {
   display: inline-block;
@@ -233,7 +212,6 @@ button {
 }
 .card-title {
   color: #fa8072;
-/* color:#69C5EC; */
 }
 .abstract-toggle {
   color: #86cc5f;
@@ -307,6 +285,9 @@ h6 {
     -webkit-box-direction: normal;
             flex-direction: row;
   }
+  .buttons-row {
+    width: 100%;
+  }
   .btn-logout {
     margin-left: 2rem;
   }
@@ -362,40 +343,4 @@ label > .label-body {
   display: inline-block;
   margin-left: 1rem;
   font-weight: normal;
-}
-@-webkit-keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@-webkit-keyframes zoom {
-  from {
-    -webkit-transform: scale(0.75);
-            transform: scale(0.75);
-  }
-  to {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-}
-@keyframes zoom {
-  from {
-    -webkit-transform: scale(0.75);
-            transform: scale(0.75);
-  }
-  to {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
 }

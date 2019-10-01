@@ -19,16 +19,19 @@ class Card extends React.Component {
     deletePaper: PropTypes.func.isRequired
   }
 
+  cardRef = React.createRef();
+
   state = {
-    hideAbstract: true,
+    hideAbstract: true
   };
 
   renderAbstract = (abstract) => {
     if (!abstract || this.state.hideAbstract) return null;
     return (
       <CSSTransition
-        classNames="abstract"
-        timeout={{ enter:150, exit:150 }}
+        classNames="card"
+        key={this.props.index}
+        timeout={{ enter:500, exit:500 }}
       >
         <p>{abstract}</p>
       </CSSTransition>
@@ -53,7 +56,8 @@ class Card extends React.Component {
     const toggleAbstract = () => { this.setState({ hideAbstract : !this.state.hideAbstract }) };
     
     return (
-      <li className='card' id={timestamp}>
+      <div className='card' id={timestamp} ref={this.cardRef}>
+        <button className='card-btn card-delete-btn' onClick={this.deleteCard}>×</button>
         <div>
           <h6 className='bold card-title'>{titleCard}</h6>
           <p className='card-authors'>
@@ -64,29 +68,60 @@ class Card extends React.Component {
           <p ><span className='bold card-keywords'>Keywords:</span> {keywordsCard}</p>
           <p ><span className='bold card-findings'>Findings:</span> {findingsCard}</p>
           <span className='bold abstract-toggle' onClick={toggleAbstract} > Abstract </span>
-          <TransitionGroup className="abstract">
+          <TransitionGroup>
             {this.renderAbstract(abstract)}
           </TransitionGroup>
         </div>
-        <div className='card-btn-col'>
-          <button 
-            className='card-btn card-delete'
-            onClick={() => this.props.deletePaper(this.props.index)}
-          >×</button>
-          {/* to do: add card up / card down buttons for sorting */}
-          {/* <button 
-            className='card-btn card-up card-mid'
-            onClick={() => this.props.cardUp(this.props.index)}
-            ><strong>↑</strong></button>
-          <button 
-            className='card-btn card-dn'
-            onClick={() => this.props.cardDn(this.props.index)}
-          ><strong>↓</strong></button> */}
-        </div>
-      </li>
+      </div>
 
     )
+  }
+
+  deleteCard = () => {
+    this.props.deletePaper(this.props.index);
+    // maintain card width while smushing
+    const rectWidth = this.cardRef.current.getBoundingClientRect().width;
+    this.cardRef.current.style.width = `${rectWidth}px`;
+    // maintain card height while smushing
+    const rectHeight = this.cardRef.current.getBoundingClientRect().height;
+    this.cardRef.current.style.height = `${rectHeight}px`;
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    return this.cardRef.current.getBoundingClientRect();
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (!snapshot) return;
+    const rect = this.cardRef.current.getBoundingClientRect();
+    const deltaY = snapshot.top - rect.top;
+    // console.log(`${this.props.details.timestamp} ${snapshot.top} ${rect.top} ${deltaY}`);
+    console.log(`${deltaY}`);
+    if (deltaY === 0) return;
+
+    this.cardRef.current.style.animation = 'cardslide 500ms forwards';
+    this.cardRef.current.style.transform = `translateY(${deltaY}px)`;
+    // this.cardRef.current.style.transform = 'translateY('+ deltaY + 'px)';
+    this.cardRef.current.addEventListener('animationend',()=>{
+      this.cardRef.current.style.animation = '';
+      this.cardRef.current.style.transform = '';
+    }, {once:true});
   }
 }
 
 export default Card;
+
+
+// to do: add buttons for sorting
+// <div className='card-btn-col'>
+//   <button className='card-btn card-delete' onClick={() => this.props.deletePaper(this.props.index)}>×</button>
+//   {/* to do: add card up / card down buttons for sorting */}
+//   {/* <button 
+//     className='card-btn card-up card-mid'
+//     onClick={() => this.props.cardUp(this.props.index)}
+//     ><strong>↑</strong></button>
+//   <button 
+//     className='card-btn card-dn'
+//     onClick={() => this.props.cardDn(this.props.index)}
+//   ><strong>↓</strong></button> */}
+// </div>

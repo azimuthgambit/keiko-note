@@ -14,7 +14,6 @@ body {
   line-height: 1.6;
   font-weight: 400;
   font-family: Calibri, sans-serif;
-  /* font-family: 'Lato', Arial, sans-serif; */
   background-color:#121212;
   color:snow;
 }
@@ -22,21 +21,6 @@ body {
 /* Layout
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 * { box-sizing: border-box; }
-
-.labpicker {
-  margin: 2rem auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-}
-
-.labpicker > div {
-  margin:1rem auto;
-}
-
-.labpicker-input {
-  width: 30rem;
-}
 
 .welcome-row {
   display: flex;
@@ -61,10 +45,10 @@ color:snow;
 
 
 .container {
-  width:80%;
   min-width: 300px;
   max-width: 900px;
   margin:auto;
+  // padding: 0 1rem;
 }
 
 .login > * {
@@ -89,10 +73,12 @@ button {
 }
 
 .buttons-row {
+  width:300px;
+  margin:auto;
   padding-bottom: 1rem;
   display:flex;
   flex-direction: column;
-  justify-content: space-between; 
+  justify-content: space-between;
 }
 
 .buttons-row > * {
@@ -103,107 +89,58 @@ button {
   margin-top: 1.3rem;
 }
 
-/* MODAL FADE FOR LOGIN  */
-.modal-fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 0.5s;
-  animation-name: fade;
-  animation-duration: 0.5s;
-}
+.cards-div
+  padding-inline-start:0
 
-@-webkit-keyframes fade {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-@keyframes fade {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
+.card 
+  position:relative
+  margin: 1rem 0
+  padding: .5rem .1rem .5rem 1rem
+  color: snow
+  border-radius: 8px
+  border: 1px solid #aaa
 
-/* MODAL ZOOM FOR ENTER PAPER FORM  */
-.modal-zoom {
-  -webkit-animation-name: zoom;
-  -webkit-animation-duration: 0.3s;
-  animation-name: zoom;
-  animation-duration: 0.3s;
-}
+.card-btn
+  font-size: 2rem
+  font-weight: 600
+  height: 3rem
+  padding: 0 .8rem
+  width: 3rem
 
-@-webkit-keyframes zoom {
-  from {-webkit-transform: scale(0.75);}
-  to {-webkit-transform: scale(1);}
-}
-@keyframes zoom {
-  from {transform: scale(0.75);}
-  to {transform: scale(1);}
-}
+.card-delete-btn
+  display: block
+  position: absolute
+  top: 5px
+  right: 5px
+  border-color:#6c6c6c
 
-/* CARDS FORMATTING */
+.card-title
+  margin-right: 40px
 
-.cards-ul{
-  padding-inline-start:0;
-}
+.card > p
+  display:inline-block
+  overflow-wrap:break-word
 
-.card {
-  margin: 1rem 0;
-  padding: .5rem .1rem .5rem 1rem;
-  color: snow;
-  border-radius: .5rem;
-  border: 1px solid #ccc;
-  display:grid;
-  grid-template-columns:auto 4rem;
-}
+.card-link
+  color:snow
+  cursor: pointer
 
-.card-btn-col {
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-start;
-}  
-
-.card-mid {
-  margin: .5rem 0;
-}
-
-.card-btn {
-  font-size: 2rem;
-  font-weight: 600;
-  height: 3rem;
-  padding: 0 .8rem;
-  width: 3rem;
-}  
-
-.card-fadeout { opacity: 0; }
-
-.card > p {
-  display:inline-block;
-  overflow-wrap:break-word;
-}
-
-.card-link {
-  color:snow;
-  cursor: pointer;
-}
-
-.bold {
+.bold
   font-weight: bold;
-}
 
-.card-keywords {
+.card-keywords
   color:#69C5EC;
-}
 
-.card-findings {
+.card-findings 
   color:#FDE95C
-}
 
-.card-title{
-  color:salmon;
-  /* color:#69C5EC; */
-}
+.card-title
+  color:salmon
 
-.abstract-toggle {
-  color:#86CC5F;
-  cursor:pointer;
-}
+
+.abstract-toggle
+  color:#86CC5F
+  cursor:pointer
 
 /* Typography  ... adapted from getskeleton.com
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -229,6 +166,8 @@ h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
   .buttons-row, .welcome-row {
     flex-direction: row;
   }
+  .buttons-row {
+    width:100%}
   .btn-logout {
     margin-left:2rem;
   }

@@ -1,45 +1,91 @@
-/* Possible Animations:
-
-add card
-delete card
-
-mount abstract
-unmount abstract
-
-mount modal form
-unmount modal form
-
-appear Must set transitionAppear={true} on animation component
-*/
+anim-time = 500ms
 
 .card-enter
   transform-origin:top
   transform: scaleY(0)
   opacity:0
-  transition .4s
-  &.card-enter-active
-    transform: scaleY(1)
-    opacity:1
+
+.card-enter-active
+  transform: scaleY(1)
+  opacity:1
+  transition: 
+    transform anim-time,
+    opacity anim-time
 
 .card-exit
-  transition .2s
-  transform: translateY(0)
-  &.card-exit-active
-    transform:translateY(-50%)
-    opacity:0
-
-.abstract-enter
   transform-origin:top
-  transform: scaleY(0)
-  transition .2s
-  opacity:0
-  &.abstract-enter-active
-    transform: scaleY(1)
-    opacity:1
+  transform: scaleY(1)
+  opacity:1
 
-.abstract-exit
-  transform: translateY(0)
-  transition .2s
-  &.abstract-exit-active
-    transform:translateY(-50%)
-    opacity:0
+.card-exit-active
+  transform:scaleY(0)
+  opacity:0
+  transition: 
+    transform anim-time, 
+    opacity anim-time
+
+.cards-div div.card-exit {
+  height:0;
+}
+
+.cards-div div.card-exit-active,
+.cards-div div.card-exit-done {
+  position:absolute;
+}
+
+@keyframes cardslide
+  100% {transform: none}
+
+/* MODAL FADE FOR LOGIN  */
+.modal-fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: anim-time;
+  animation-name: fade;
+  animation-duration: anim-time;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+@keyframes fade {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+// /* MODAL SLIDE FOR PAPER FORM  */
+// .modal-slide {
+//   transform-origin:top
+//   -webkit-animation-name: slide;
+//   -webkit-animation-duration: anim-time;
+//   animation-name: slide;
+//   animation-duration: anim-time;
+// }
+
+// @-webkit-keyframes slide {
+//   from {-webkit-transform: scaleY(0);}
+//   to {-webkit-transform: scaleY(1);}
+// }
+// @keyframes slide {
+//   from {transform: scaleY(0);}
+//   to {transform: scaleY(1);}
+// }
+
+// /* MODAL ZOOM FOR ENTER PAPER FORM  */
+// .modal-zoom {
+//   -webkit-animation-name: zoom;
+//   -webkit-animation-duration: 0.3s;
+//   animation-name: zoom;
+//   animation-duration: 0.3s;
+// }
+
+// @-webkit-keyframes zoom {
+//   from {-webkit-transform: scale(0.75);}
+//   to {-webkit-transform: scale(1);}
+// }
+// @keyframes zoom {
+//   from {transform: scale(0.75);}
+//   to {transform: scale(1);}
+// }
+
+/* CARDS FORMATTING */

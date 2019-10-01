@@ -29,6 +29,9 @@ export default samplePapers;
 
 
 // ,
+
+
+// ,
   
 //   paper3: {
 //     title: "Contribution of noncoding pathogenic variants to RPGRIP1-mediated inherited retinal degeneration.",
@@ -52,7 +55,9 @@ export default samplePapers;
 //     keywords: "cilia, gene therapy, LCA, CEP290",
 //     findings: "Intravitreal injections of an antisense oligonucleotide were safe and restored correct splicing and improved vision at 3 months. Ten CEP290-LCA patients.",
 //     abstract: "Photoreceptor ciliopathies constitute the most common molecular mechanism of the childhood blindness Leber congenital amaurosis. Ten patients with Leber congenital amaurosis carrying the c.2991+1655A>G allele in the ciliopathy gene centrosomal protein 290 (CEP290) were treated (ClinicalTrials.gov no. NCT03140969 ) with intravitreal injections of an antisense oligonucleotide to restore correct splicing. There were no serious adverse events, and vision improved at 3 months. The visual acuity of one exceptional responder improved from light perception to 20/400."
-//   },
+//   }
+
+// ,
   
 //   paper5: {
 //     title: "Contribution of noncoding pathogenic variants to RPGRIP1-mediated inherited retinal degeneration.",

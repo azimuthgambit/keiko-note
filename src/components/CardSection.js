@@ -12,18 +12,13 @@ class CardSection extends React.Component {
   renderCards = (key) => {
     const paper = this.props.papers[key];
     const deletePaper = this.props.deletePaper;
-    // const transitionOptions = {
-    //   classNames: "card",
-    //   key,
-    //   timeout:{ enter:500, exit:500 }
-    // };
     if(!paper) return null;
 
     return(
       <CSSTransition
         classNames="card"
         key={key}
-        timeout={{ enter:400, exit:200 }}
+        timeout={{ enter:500, exit:500 }}
       >
         <Card
           key={key}
@@ -40,7 +35,8 @@ render() {
   
   return(
     <div className="container">
-      <TransitionGroup component="ul" className="cards-ul">
+      {/* <TransitionGroup component="ul" className="cards-ul"> */}
+      <TransitionGroup component="div" className="cards-div">
         {papers.map(this.renderCards)}
       </TransitionGroup>
     </div>

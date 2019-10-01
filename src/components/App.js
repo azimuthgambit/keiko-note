@@ -89,20 +89,25 @@ class App extends React.Component {
     this.setState({ papers });
   }
 
-  addPaperDelay = paper => {
+  addPaperDelay = async (paper) => {
+    // add the paper first
+    this.addPaper(paper);
+    // then use countdown to allow animation to finish
     return new Promise((resolve, reject) => {
-      setTimeout(p => {
-        resolve(this.addPaper(p));
-      }, 300, paper)
+      setTimeout( () => {
+        resolve();
+      }, 550)
     });
   };
 
   loadSamplePapers = async () => {
-    for (const p in samplePapers) {
-      await this.addPaperDelay(samplePapers[p]);
+    const sampleKeys = Object.keys(samplePapers);
+    for (const k in sampleKeys) {
+      const key = sampleKeys[k];
+      await this.addPaperDelay(samplePapers[key]);
     }
   }
-
+  
   render() {
     
     const welcomeBar = (
