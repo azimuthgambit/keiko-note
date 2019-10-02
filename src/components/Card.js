@@ -78,13 +78,14 @@ class Card extends React.Component {
   }
 
   deleteCard = () => {
-    this.props.deletePaper(this.props.index);
+    // maintain card height while smushing
+    // const rectHeight = this.cardRef.current.getBoundingClientRect().height;
+    // this.cardRef.current.style.height = `${rectHeight}px`;
     // maintain card width while smushing
     const rectWidth = this.cardRef.current.getBoundingClientRect().width;
     this.cardRef.current.style.width = `${rectWidth}px`;
-    // maintain card height while smushing
-    const rectHeight = this.cardRef.current.getBoundingClientRect().height;
-    this.cardRef.current.style.height = `${rectHeight}px`;
+
+    this.props.deletePaper(this.props.index);
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
@@ -96,7 +97,7 @@ class Card extends React.Component {
     const rect = this.cardRef.current.getBoundingClientRect();
     const deltaY = snapshot.top - rect.top;
     // console.log(`${this.props.details.timestamp} ${snapshot.top} ${rect.top} ${deltaY}`);
-    console.log(`${deltaY}`);
+    // console.log(`${deltaY}`);
     if (deltaY === 0) return;
 
     this.cardRef.current.style.animation = 'cardslide 500ms forwards';

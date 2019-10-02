@@ -17,8 +17,8 @@
 .card-exit {
   -webkit-transform-origin: top;
           transform-origin: top;
-  -webkit-transform: scaleY(1);
-          transform: scaleY(1);
+  -webkit-transform: scaleY(0.5);
+          transform: scaleY(0.5);
   opacity: 1;
 }
 .card-exit-active {
@@ -110,6 +110,18 @@ body {
   -webkit-box-pack: justify;
           justify-content: space-between;
 }
+.login-row {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+}
+.login-row > button {
+  margin: 10px 0;
+}
 .welcome {
   margin: 0 auto;
   width: 100%;
@@ -126,9 +138,10 @@ body {
   min-width: 300px;
   max-width: 900px;
   margin: auto;
+  padding: 0 10px;
 }
 .login > * {
-  margin: 1rem 0;
+  margin: 10px 0;
 }
 button {
   height: 2.8rem;
@@ -280,7 +293,8 @@ h6 {
     font-size: 1.5rem;
   }
   .buttons-row,
-  .welcome-row {
+  .welcome-row,
+  .login-row {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
             flex-direction: row;

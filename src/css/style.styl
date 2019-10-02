@@ -22,11 +22,18 @@ body {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 * { box-sizing: border-box; }
 
-.welcome-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
+.welcome-row
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+
+.login-row
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+
+.login-row > button 
+  margin: 10px 0
 
 .welcome {
   margin:0 auto;
@@ -48,11 +55,11 @@ color:snow;
   min-width: 300px;
   max-width: 900px;
   margin:auto;
-  // padding: 0 1rem;
+  padding: 0 10px;
 }
 
 .login > * {
-  margin: 1rem 0;
+  margin: 10px 0;
 }
 
 button {
@@ -163,7 +170,7 @@ h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
   h4 { font-size: 3.0rem; }
   h5 { font-size: 2.4rem; }
   h6 { font-size: 1.5rem; }
-  .buttons-row, .welcome-row {
+  .buttons-row, .welcome-row, .login-row {
     flex-direction: row;
   }
   .buttons-row {
