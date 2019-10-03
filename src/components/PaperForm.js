@@ -26,13 +26,23 @@ class PaperForm extends React.Component {
       findings: this.findingsRef.current.value,
       abstract: this.abstractRef.current.value
     }
-    this.props.addPaper(paper);
-    this.props.togglePaperForm();  // clears the form when toggled off and back on again
+    this.fadeOutForm();
+    // give the form a little time after fading out before adding the paper
+    setTimeout(() => this.props.addPaper(paper), 300);
   }
+  
+  fadeOutForm = () => {
+    // get confirmation from user
+    // if (!window.confirm("Are you sure?")) { return; }
+    this.formRef.current.style.transition = 'opacity 200ms';
+    this.formRef.current.style.opacity = 0;
+    // clear the form when toggled off and back on again
+    setTimeout(() => this.props.togglePaperForm(), 200);
+  }
+
   render() {
-    const formClass = this.props.hidePaperForm ? 'form-hide' : 'form-show';
     return (
-      <form className={`container modal-fade ${formClass}`} ref={this.formRef} >
+      <form className={`container modal-fade`} ref={this.formRef} >
         <label>Title</label>
         <input name="title" ref={this.titleRef} type="text" placeholder="Title" />
         <label>Authors</label>
@@ -51,14 +61,12 @@ class PaperForm extends React.Component {
         <input name="abstractMed" ref={this.abstractRef} type="text" placeholder="Abstract" />         
         <div className="buttons-row">
           <button type="button" className="btn-modal" onClick={this.enterPaper}>Add Paper</button>
-          <button type="button" className="btn-modal" onClick={this.props.togglePaperForm}>Cancel / Close</button>
+          <button type="button" className="btn-modal" onClick={this.fadeOutForm}>Cancel / Close</button>
+          {/* <button type="button" className="btn-modal" onClick={this.props.togglePaperForm}>Cancel / Close</button> */}
         </div>
       </form>  
     );
   }
-  
-  // componentDidMount() { console.log('paper form mounting!') }
-
 }
 
 export default PaperForm;

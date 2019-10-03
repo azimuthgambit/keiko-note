@@ -18,7 +18,7 @@ class CardSection extends React.Component {
       <CSSTransition
         classNames="card"
         key={key}
-        timeout={{ enter:500, exit:500 }}
+        timeout={{ enter:300, exit:300 }}
       >
         <Card
           key={key}
@@ -35,7 +35,6 @@ render() {
   
   return(
     <div className="container">
-      {/* <TransitionGroup component="ul" className="cards-ul"> */}
       <TransitionGroup component="div" className="cards-div">
         {papers.map(this.renderCards)}
       </TransitionGroup>

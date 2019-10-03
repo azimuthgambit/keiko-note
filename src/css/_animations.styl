@@ -1,27 +1,43 @@
-anim-time = 500ms
+anim-time = 200ms
+
+// .card-enter
+//   transform-origin:top
+//   transform: scaleY(0)
+//   opacity:0
+
+// .card-enter-active
+//   transform: scaleY(1)
+//   opacity:1
+//   transition: 
+//     transform anim-time,
+//     opacity anim-time
+
+// .card-exit
+//   transform-origin:top
+//   transform: scaleY(.5)
+//   opacity:1
+
+// .card-exit-active
+//   transform:scaleY(0)
+//   opacity:0
+//   transition: 
+//     transform anim-time, 
+//     opacity anim-time
 
 .card-enter
-  transform-origin:top
-  transform: scaleY(0)
   opacity:0
 
 .card-enter-active
-  transform: scaleY(1)
   opacity:1
   transition: 
-    transform anim-time,
     opacity anim-time
 
 .card-exit
-  transform-origin:top
-  transform: scaleY(.5)
   opacity:1
 
 .card-exit-active
-  transform:scaleY(0)
   opacity:0
   transition: 
-    transform anim-time, 
     opacity anim-time
 
 .cards-div div.card-exit {

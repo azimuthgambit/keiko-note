@@ -1,34 +1,18 @@
 .card-enter {
-  -webkit-transform-origin: top;
-          transform-origin: top;
-  -webkit-transform: scaleY(0);
-          transform: scaleY(0);
   opacity: 0;
 }
 .card-enter-active {
-  -webkit-transform: scaleY(1);
-          transform: scaleY(1);
   opacity: 1;
-  -webkit-transition: opacity 500ms, -webkit-transform 500ms;
-  transition: opacity 500ms, -webkit-transform 500ms;
-  transition: transform 500ms, opacity 500ms;
-  transition: transform 500ms, opacity 500ms, -webkit-transform 500ms;
+  -webkit-transition: opacity 200ms;
+  transition: opacity 200ms;
 }
 .card-exit {
-  -webkit-transform-origin: top;
-          transform-origin: top;
-  -webkit-transform: scaleY(0.5);
-          transform: scaleY(0.5);
   opacity: 1;
 }
 .card-exit-active {
-  -webkit-transform: scaleY(0);
-          transform: scaleY(0);
   opacity: 0;
-  -webkit-transition: opacity 500ms, -webkit-transform 500ms;
-  transition: opacity 500ms, -webkit-transform 500ms;
-  transition: transform 500ms, opacity 500ms;
-  transition: transform 500ms, opacity 500ms, -webkit-transform 500ms;
+  -webkit-transition: opacity 200ms;
+  transition: opacity 200ms;
 }
 .cards-div div.card-exit {
   height: 0;
@@ -39,9 +23,9 @@
 }
 .modal-fade {
   -webkit-animation-name: fade;
-  -webkit-animation-duration: 500ms;
+  -webkit-animation-duration: 200ms;
   animation-name: fade;
-  animation-duration: 500ms;
+  animation-duration: 200ms;
 }
 @-webkit-keyframes fade {
   from {
@@ -96,12 +80,24 @@ body {
   background-color: #121212;
   color: #fffafa;
 }
-/* Layout
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
 * {
   box-sizing: border-box;
 }
+/* Layout
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.container {
+  min-width: 300px;
+  max-width: 900px;
+  margin: auto;
+  padding: 0 10px;
+}
+.welcome {
+  margin: 0 auto;
+  width: 100%;
+  background-color: #2e486b;
+}
 .welcome-row {
+  padding-top: 2rem;
   display: -webkit-box;
   display: flex;
   -webkit-box-orient: horizontal;
@@ -109,6 +105,13 @@ body {
           flex-direction: row;
   -webkit-box-pack: justify;
           justify-content: space-between;
+}
+.welcome-byline {
+  position: relative;
+  top: 1rem;
+}
+.welcome-byline a {
+  color: #fffafa;
 }
 .login-row {
   display: -webkit-box;
@@ -121,24 +124,6 @@ body {
 }
 .login-row > button {
   margin: 10px 0;
-}
-.welcome {
-  margin: 0 auto;
-  width: 100%;
-  background-color: #2e486b;
-}
-.welcome-byline {
-  position: relative;
-  top: 1rem;
-}
-.welcome-byline > a {
-  color: #fffafa;
-}
-.container {
-  min-width: 300px;
-  max-width: 900px;
-  margin: auto;
-  padding: 0 10px;
 }
 .login > * {
   margin: 10px 0;
@@ -158,6 +143,11 @@ button {
   border: 1px solid #ccc;
   border-radius: 4px;
   cursor: pointer;
+  -webkit-transition-duration: 200ms;
+          transition-duration: 200ms;
+}
+button:hover {
+  background-color: rgba(255,255,255,0.15);
 }
 .buttons-row {
   width: 300px;
@@ -184,10 +174,10 @@ button {
 .card {
   position: relative;
   margin: 1rem 0;
-  padding: 0.5rem 0.1rem 0.5rem 1rem;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
   color: #fffafa;
-  border-radius: 8px;
-  border: 1px solid #aaa;
+  border-radius: 0.8rem;
+  background-color: rgba(255,255,255,0.09);
 }
 .card-btn {
   font-size: 2rem;
@@ -201,10 +191,11 @@ button {
   position: absolute;
   top: 5px;
   right: 5px;
-  border-color: #6c6c6c;
+  border: none;
+  font-weight: 100;
 }
 .card-title {
-  margin-right: 40px;
+  margin-right: 3rem;
 }
 .card > p {
   display: inline-block;
@@ -272,7 +263,7 @@ h6 {
   line-height: 1.6;
   letter-spacing: 0;
 }
-/* Larger than phablet */
+/* Larger than breakpoint */
 @media (min-width: 550px) {
   h1 {
     font-size: 5rem;

@@ -15,7 +15,6 @@ class App extends React.Component {
   componentDidMount() {
     // return and skip Firebase Auth if running in guest mode
     if (this.state.uid === 'guest') { return; }
-
     firebase.auth().onAuthStateChanged(user => {
       if(!user) { return }
       else if(user) {
@@ -74,8 +73,6 @@ class App extends React.Component {
   };
 
   deletePaper = key => {
-    // get confirmation from user
-    if (!window.confirm("Delete this paper?")) { return; }
     // take copy of state
     const papers = {...this.state.papers};
     // when logged in, update the state for firebase
@@ -96,7 +93,7 @@ class App extends React.Component {
     return new Promise((resolve, reject) => {
       setTimeout( () => {
         resolve();
-      }, 550)
+      }, 400)
     });
   };
 

@@ -31,7 +31,7 @@ class Card extends React.Component {
       <CSSTransition
         classNames="card"
         key={this.props.index}
-        timeout={{ enter:500, exit:500 }}
+        timeout={{ enter:200, exit:220 }}
       >
         <p>{abstract}</p>
       </CSSTransition>
@@ -78,14 +78,16 @@ class Card extends React.Component {
   }
 
   deleteCard = () => {
-    // maintain card height while smushing
-    // const rectHeight = this.cardRef.current.getBoundingClientRect().height;
-    // this.cardRef.current.style.height = `${rectHeight}px`;
+    // get confirmation from user
+    if (!window.confirm("Delete this paper?")) { return; }
     // maintain card width while smushing
     const rectWidth = this.cardRef.current.getBoundingClientRect().width;
     this.cardRef.current.style.width = `${rectWidth}px`;
-
-    this.props.deletePaper(this.props.index);
+    // set card to fade out
+    this.cardRef.current.style.transition = 'opacity 200ms';
+    this.cardRef.current.style.opacity = 0;
+    // pause to allow fadeout before actually deleting
+    setTimeout(() => this.props.deletePaper(this.props.index), 200);
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
@@ -100,9 +102,8 @@ class Card extends React.Component {
     // console.log(`${deltaY}`);
     if (deltaY === 0) return;
 
-    this.cardRef.current.style.animation = 'cardslide 500ms forwards';
+    this.cardRef.current.style.animation = 'cardslide 200ms forwards';
     this.cardRef.current.style.transform = `translateY(${deltaY}px)`;
-    // this.cardRef.current.style.transform = 'translateY('+ deltaY + 'px)';
     this.cardRef.current.addEventListener('animationend',()=>{
       this.cardRef.current.style.animation = '';
       this.cardRef.current.style.transform = '';

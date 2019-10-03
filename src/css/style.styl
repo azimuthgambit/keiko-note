@@ -17,15 +17,34 @@ body {
   background-color:#121212;
   color:snow;
 }
+* { box-sizing: border-box; }
 
 /* Layout
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-* { box-sizing: border-box; }
+
+.container
+  min-width: 300px
+  max-width: 900px
+  margin:auto
+  padding: 0 10px
+
+.welcome
+  margin:0 auto
+  width:100%
+  background-color:rgb(46, 72, 107, 0.7)
 
 .welcome-row
+  padding-top:2rem
   display: flex
   flex-direction: row
   justify-content: space-between
+
+.welcome-byline
+  position:relative
+  top:1rem
+  a
+    color:snow
+
 
 .login-row
   display: flex
@@ -35,49 +54,28 @@ body {
 .login-row > button 
   margin: 10px 0
 
-.welcome {
-  margin:0 auto;
-  width:100%;
-  background-color:rgb(46, 72, 107, 0.7);
-}
+.login > *
+  margin: 10px 0
 
-.welcome-byline {
-  position:relative;
-  top:1rem;
-}
+button
+  height: 2.8rem
+  padding: 0 1rem
+  color: snow
+  text-align: center
+  font-size: 1.1rem
+  font-weight: 600
+  letter-spacing: .1rem
+  text-transform: uppercase
+  text-decoration: none
+  white-space: nowrap
+  background-color: transparent
+  border: 1px solid #ccc
+  border-radius: 4px
+  cursor: pointer
+  transition-duration:200ms
 
-.welcome-byline > a{
-color:snow;
-}
-
-
-.container {
-  min-width: 300px;
-  max-width: 900px;
-  margin:auto;
-  padding: 0 10px;
-}
-
-.login > * {
-  margin: 10px 0;
-}
-
-button {
-  height: 2.8rem;
-  padding: 0 1rem;
-  color: snow;
-  text-align: center;
-  font-size: 1.1rem;
-  font-weight: 600;
-  letter-spacing: .1rem;
-  text-transform: uppercase;
-  text-decoration: none;
-  white-space: nowrap;
-  background-color: transparent;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  cursor: pointer;
-}
+button:hover
+  background-color:rgba(255,255,255,.15)
 
 .buttons-row {
   width:300px;
@@ -102,10 +100,13 @@ button {
 .card 
   position:relative
   margin: 1rem 0
-  padding: .5rem .1rem .5rem 1rem
+  padding: .5rem .5rem .5rem 1rem
   color: snow
-  border-radius: 8px
-  border: 1px solid #aaa
+  border-radius: .8rem
+  // border: 1px solid #aaa
+  background-color:rgba(255,255,255,.09)
+  // opacity:1
+  
 
 .card-btn
   font-size: 2rem
@@ -119,10 +120,11 @@ button {
   position: absolute
   top: 5px
   right: 5px
-  border-color:#6c6c6c
+  border:none
+  font-weight:100
 
 .card-title
-  margin-right: 40px
+  margin-right: 3rem
 
 .card > p
   display:inline-block
@@ -162,8 +164,11 @@ h4 { font-size: 2.4rem; line-height: 1.35; letter-spacing: -.08rem; }
 h5 { font-size: 1.8rem; line-height: 1.5;  letter-spacing: -.05rem; }
 h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
 
-/* Larger than phablet */
-@media (min-width: 550px) {
+// responsive breakpoint:
+phone-width = 550px
+
+/* Larger than breakpoint */
+@media (min-width: phone-width) {
   h1 { font-size: 5.0rem; }
   h2 { font-size: 4.2rem; }
   h3 { font-size: 3.6rem; }
