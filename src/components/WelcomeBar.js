@@ -34,9 +34,9 @@ class WelcomeBar extends React.Component {
       </div>
     );
 
+    const enterPaperBtn = this.props.uid ? <button onClick={this.togglePaperForm} >NEW PAPER</button> : <div></div> ;
+    const loadSamplesBtn = this.props.uid ? <button onClick={this.props.loadSamplePapers} >SAMPLE PAPERS</button> : <div></div> ;
     const logoutBtn = this.props.uid ? <button onClick={this.props.logout}>Log Out</button> : <div></div> ;
-    const enterPaperBtn = this.props.uid ? <button onClick={this.togglePaperForm} >Enter New Paper</button> : <div></div> ;
-    const loadSamplesBtn = this.props.uid ? <button onClick={this.props.loadSamplePapers} >Load Sample Papers</button> : <div></div> ;
 
     const buttonsRow = (
       <div className="container buttons-row modal-fade">

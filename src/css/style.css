@@ -63,7 +63,15 @@
     opacity: 1;
   }
 }
-/* Base Styles   ... adapted from getskeleton.com
+/*
+* Skeleton V2.0.4
+* Copyright 2014, Dave Gamache
+* www.getskeleton.com
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 12/29/2014
+*/
+/* Base Styles 
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 /* NOTE
 html is set to 62.5% so that all the REM measurements throughout Skeleton
@@ -89,7 +97,7 @@ body {
   min-width: 300px;
   max-width: 900px;
   margin: auto;
-  padding: 0 10px;
+  padding: 0 1rem;
 }
 .welcome {
   margin: 0 auto;
@@ -97,7 +105,7 @@ body {
   background-color: #2e486b;
 }
 .welcome-row {
-  padding-top: 2rem;
+  padding-top: 0.5rem;
   display: -webkit-box;
   display: flex;
   -webkit-box-orient: horizontal;
@@ -105,6 +113,11 @@ body {
           flex-direction: row;
   -webkit-box-pack: justify;
           justify-content: space-between;
+}
+@media (min-width: 550px) {
+  .welcome-row {
+    padding-top: 2rem;
+  }
 }
 .welcome-byline {
   position: relative;
@@ -129,17 +142,17 @@ body {
   margin: 10px 0;
 }
 button {
-  height: 2.8rem;
+  height: 3.5rem;
   padding: 0 1rem;
   color: #fffafa;
   text-align: center;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   font-weight: 600;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
-  background-color: transparent;
+  background-color: rgba(255,255,255,0.09);
   border: 1px solid #ccc;
   border-radius: 4px;
   cursor: pointer;
@@ -149,20 +162,33 @@ button {
 button:hover {
   background-color: rgba(255,255,255,0.15);
 }
+@media (min-width: 550px) {
+  button {
+    height: 4rem;
+    font-size: 1.5rem;
+  }
+}
 .buttons-row {
-  width: 300px;
   margin: auto;
   padding-bottom: 1rem;
   display: -webkit-box;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
   -webkit-box-pack: justify;
           justify-content: space-between;
 }
 .buttons-row > * {
   margin-top: 0.5rem;
+}
+@media (max-width: 400px) {
+  .buttons-row {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+            flex-direction: column-reverse;
+    width: 100%;
+  }
+  .buttons-row > * {
+    margin-top: 1rem;
+  }
 }
 .btn-modal {
   margin-top: 1.3rem;
@@ -178,6 +204,10 @@ button:hover {
   color: #fffafa;
   border-radius: 0.8rem;
   background-color: rgba(255,255,255,0.09);
+}
+.card > p {
+  display: inline-block;
+  overflow-wrap: break-word;
 }
 .card-btn {
   font-size: 2rem;
@@ -195,11 +225,7 @@ button:hover {
   font-weight: 100;
 }
 .card-title {
-  margin-right: 3rem;
-}
-.card > p {
-  display: inline-block;
-  overflow-wrap: break-word;
+  margin-right: 3.2rem;
 }
 .card-link {
   color: #fffafa;
@@ -221,7 +247,10 @@ button:hover {
   color: #86cc5f;
   cursor: pointer;
 }
-/* Typography  ... adapted from getskeleton.com
+.abstract-toggle:hover {
+  background-color: rgba(255,255,255,0.15);
+}
+/* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 h1,
 h2,
@@ -263,6 +292,10 @@ h6 {
   line-height: 1.6;
   letter-spacing: 0;
 }
+p {
+  line-height: 1.3;
+  margin: 0;
+}
 /* Larger than breakpoint */
 @media (min-width: 550px) {
   h1 {
@@ -297,11 +330,7 @@ h6 {
     margin-left: 2rem;
   }
 }
-p {
-  line-height: 1.3;
-  margin: 0;
-}
-/* Forms   ... adapted from getskeleton.com
+/* Forms 
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 input[type="text"],
 textarea,
