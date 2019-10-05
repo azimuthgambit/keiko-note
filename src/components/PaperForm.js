@@ -2,8 +2,17 @@ import React from "react";
 
 class PaperForm extends React.Component {
 
-  formRef = React.createRef();
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyDown);
+  }
+  
+  handleKeyDown = (key) => {
+    if (key.code === 'Enter') {this.enterPaper()};  // logs error but still works
+    if (key.code === 'NumpadEnter') {this.enterPaper()};
+    if (key.code === 'Escape') {this.cancelForm()};
+  }
 
+  formRef = React.createRef();
   titleRef = React.createRef();
   authorsRef = React.createRef();
   journalRef = React.createRef();
@@ -13,8 +22,9 @@ class PaperForm extends React.Component {
   findingsRef = React.createRef();
   abstractRef = React.createRef();
   
-  enterPaper = (e) => {
-    e.preventDefault();
+  // enterPaper = (e) => {
+    // e.preventDefault();
+  enterPaper = () => {
     const paper = {
       title: this.titleRef.current.value,
       authors: this.authorsRef.current.value,
@@ -26,16 +36,25 @@ class PaperForm extends React.Component {
       findings: this.findingsRef.current.value,
       abstract: this.abstractRef.current.value
     }
+    if (!paper.pubMed) {
+      alert('PubMed ID is required.')
+      return;
+    }
     this.fadeOutForm();
-    // give the form a little time after fading out before adding the paper
+    // pause to let the form fade out before adding the paper
     setTimeout(() => this.props.addPaper(paper), 300);
+  }
+
+  cancelForm = () => {
+    // get confirmation from user
+    if (!window.confirm("Are you sure you want to cancel?")) { return; }
+    this.fadeOutForm();
   }
   
   fadeOutForm = () => {
-    // get confirmation from user
-    // if (!window.confirm("Are you sure?")) { return; }
     this.formRef.current.style.transition = 'opacity 200ms';
     this.formRef.current.style.opacity = 0;
+    window.removeEventListener('keydown', this.handleKeyDown);
     // clear the form when toggled off and back on again
     setTimeout(() => this.props.togglePaperForm(), 200);
   }
@@ -61,8 +80,7 @@ class PaperForm extends React.Component {
         <input name="abstractMed" ref={this.abstractRef} type="text" placeholder="Abstract" />         
         <div className="buttons-row">
           <button type="button" className="btn-modal" onClick={this.enterPaper}>Add Paper</button>
-          <button type="button" className="btn-modal" onClick={this.fadeOutForm}>Cancel / Close</button>
-          {/* <button type="button" className="btn-modal" onClick={this.props.togglePaperForm}>Cancel / Close</button> */}
+          <button type="button" className="btn-modal" onClick={this.cancelForm}>Cancel / Close</button>
         </div>
       </form>  
     );

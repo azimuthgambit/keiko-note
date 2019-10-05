@@ -6,21 +6,21 @@ const Login = (props) => (
     <p>Please log in to view and manage your notebook. (3rd party cookies must be enabled for this.)</p>
     <div className="login-row">
       <button 
-        className="github" 
+        className="login-btn github" 
         onClick={() => props.authenticate('Github')}
       >
         Log In With GitHub
       </button>
 
       <button 
-        className="twitter" 
+        className="login-btn twitter" 
         onClick={() => props.authenticate('Twitter')}
       >
         Log In With Twitter
       </button>
 
       <button 
-        className="facebook" 
+        className="login-btn facebook" 
         onClick={() => props.authenticate('Facebook')}
         >
         Log In With Facebook
@@ -30,7 +30,7 @@ const Login = (props) => (
     <p>Or</p>
 
     <button 
-      className="guest" 
+      className="login-btn guest" 
       onClick={() => props.authenticate('guest')}
       >
       Continue as Guest

@@ -63,7 +63,7 @@
     opacity: 1;
   }
 }
-/*
+/* 'Base Styles', 'Typography', and 'Forms' sections below are adapted from:
 * Skeleton V2.0.4
 * Copyright 2014, Dave Gamache
 * www.getskeleton.com
@@ -114,7 +114,7 @@ body {
   -webkit-box-pack: justify;
           justify-content: space-between;
 }
-@media (min-width: 550px) {
+@media (min-width: 570px) {
   .welcome-row {
     padding-top: 2rem;
   }
@@ -138,15 +138,18 @@ body {
 .login-row > button {
   margin: 10px 0;
 }
+.login-btn {
+  height: 4.5rem;
+}
 .login > * {
   margin: 10px 0;
 }
 button {
-  height: 3.5rem;
+  height: 3rem;
   padding: 0 1rem;
   color: #fffafa;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 600;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
@@ -160,12 +163,16 @@ button {
           transition-duration: 200ms;
 }
 button:hover {
-  background-color: rgba(255,255,255,0.15);
+  background-color: rgba(255,255,255,0.18);
 }
-@media (min-width: 550px) {
+@media (max-width: 400px) {
   button {
-    height: 4rem;
-    font-size: 1.5rem;
+    height: 3.5rem;
+  }
+}
+@media (min-width: 570px) {
+  button {
+    height: 3.2rem;
   }
 }
 .buttons-row {
@@ -223,6 +230,10 @@ button:hover {
   right: 5px;
   border: none;
   font-weight: 100;
+  background-color: rgba(255,255,255,0);
+}
+.card-delete-btn:hover {
+  background-color: rgba(255,255,255,0.07);
 }
 .card-title {
   margin-right: 3.2rem;
@@ -297,7 +308,7 @@ p {
   margin: 0;
 }
 /* Larger than breakpoint */
-@media (min-width: 550px) {
+@media (min-width: 570px) {
   h1 {
     font-size: 5rem;
   }

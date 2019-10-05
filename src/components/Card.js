@@ -20,6 +20,7 @@ class Card extends React.Component {
   }
 
   cardRef = React.createRef();
+  abstractRef = React.createRef();
 
   state = {
     hideAbstract: true
@@ -33,9 +34,13 @@ class Card extends React.Component {
         key={this.props.index}
         timeout={{ enter:200, exit:220 }}
       >
-        <p>{abstract}</p>
+        <p onClick={this.abstractClick} ref={this.abstractRef} >{abstract}</p>
       </CSSTransition>
     );
+  }
+
+  abstractClick = () => {
+    console.log(this.abstractRef.current.textContent);
   }
 
   render() {
