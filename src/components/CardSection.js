@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './Card';
+// import FetchCard from './FetchCard';
 import PropTypes from 'prop-types';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
@@ -32,9 +33,16 @@ class CardSection extends React.Component {
 
 render() {
   const papers = Object.keys(this.props.papers).reverse();
+  // let papersList = ['25081398', '30559420', '30072743'];
+  // const papersObj = {...this.props.papers};
+  // papersList.map
+  // papersObj[`paper${Date.now()}`] = paper;
   
   return(
     <div className="container">
+      {/* <FetchCard
+        deletePaper={this.props.deletePaper}
+      /> */}
       <TransitionGroup component="div" className="cards-div">
         {papers.map(this.renderCards)}
       </TransitionGroup>

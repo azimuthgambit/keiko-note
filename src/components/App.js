@@ -6,6 +6,8 @@ import WelcomeBar from "./WelcomeBar";
 import CardSection from "./CardSection";
 import samplePapers from "../sample-papers";
 
+import FetchCard from './FetchCard';
+
 class App extends React.Component {
   state = {
     papers: {},
@@ -109,13 +111,13 @@ class App extends React.Component {
     
     const welcomeBar = (
       <WelcomeBar 
-          tagline="keiko-note"
-          byline="Azimuth Gambit"
-          href="http://www.azimuthgambit.com"
-          uid={this.state.uid}
-          logout={this.logout}
-          addPaper={this.addPaper}
-          loadSamplePapers={this.loadSamplePapers}
+        tagline="keiko-note"
+        byline="Azimuth Gambit"
+        href="http://www.azimuthgambit.com"
+        uid={this.state.uid}
+        logout={this.logout}
+        addPaper={this.addPaper}
+        loadSamplePapers={this.loadSamplePapers}
       />
     );
 
@@ -127,6 +129,12 @@ class App extends React.Component {
       <CardSection 
         papers={this.state.papers}
         deletePaper={this.deletePaper}
+      />
+    );
+
+    const fetchCard = (
+      <FetchCard 
+        addPaper={this.addPaper}
       />
     );
 
@@ -143,6 +151,7 @@ class App extends React.Component {
     return (
       <div>
         {welcomeBar}
+        {fetchCard}
         {cardSection}
       </div>
     );

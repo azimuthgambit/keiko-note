@@ -56,7 +56,7 @@ class Card extends React.Component {
     const findingsCard = findings ? findings : '';
 
     // render only the first three authors, separated by comma, or placeholder if null
-    const authorsFew = authors ? authors.split(/[,]/).slice(0,3) : '(authors)' ;
+    // const authorsFew = authors ? authors.split(/[,]/).slice(0,3) : '(authors)' ;
     const pubMedLink = () => 'https://www.ncbi.nlm.nih.gov/pubmed/' + pubMed ;
     const toggleAbstract = () => { this.setState({ hideAbstract : !this.state.hideAbstract }) };
     
@@ -64,11 +64,13 @@ class Card extends React.Component {
       <div className='card' id={timestamp} ref={this.cardRef}>
         <button className='card-btn card-delete-btn' onClick={this.deleteCard}>×</button>
         <div>
-          <h6 className='bold card-title'>{titleCard}</h6>
+          <a className='card-link' href={pubMedLink()} rel='noopener noreferrer' target='_blank'>
+            <h6 className='bold card-title' >{titleCard}</h6>
+          </a> 
           <p className='card-authors'>
-            {authorsFew}, et al. 
+            {authors} et al. 
             <span>   </span> <i>{journalCard}</i> {yearCard} <span>   </span> 
-            <a className='card-link' href={pubMedLink()} rel='noopener noreferrer' target='_blank'>pubmed</a> 
+            {/* <a className='card-link' href={pubMedLink()} rel='noopener noreferrer' target='_blank'>pubmed</a>  */}
           </p>
           <p ><span className='bold card-keywords'>Keywords:</span> {keywordsCard}</p>
           <p ><span className='bold card-findings'>Findings:</span> {findingsCard}</p>

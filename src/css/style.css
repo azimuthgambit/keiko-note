@@ -239,8 +239,7 @@ button:hover {
   margin-right: 3.2rem;
 }
 .card-link {
-  color: #fffafa;
-  cursor: pointer;
+  text-decoration: none;
 }
 .bold {
   font-weight: bold;
