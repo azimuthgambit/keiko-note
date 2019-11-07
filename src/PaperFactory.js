@@ -1,16 +1,7 @@
-export const fetchPaper = async (pubMed) => {
-  const apiLink = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=abstract&id=${pubMed}`; // returns xml
-  return (
-    fetch(apiLink, {mode: 'cors'})
-    .then(response => response.text())
-    .then(xml => paperFactory(xml))
-    // .then(paper => console.table(paper))
-    .catch(error => console.log(error))
-  );
-}
+// factory function to create paper object given xml data fetched from PubMed API
+function paperFactory(xml) {
 
-// factory function to create paper object
-export function paperFactory(xml) {
+  // create DOM parser for parsing xml code
   var oParser = new DOMParser();
   var oDOM = oParser.parseFromString(xml, "application/xml");
 
@@ -76,15 +67,13 @@ export function paperFactory(xml) {
       }
     })
     // join array together as abstract body
-    abstract = abstractArr.join(', ');
+    abstract = abstractArr.join(' ');
   }
 
   const keywords = '';
   const findings = '';
 
   return { title, authors, journal, year, timestamp, pubMed, keywords, findings, abstract }
-}
+};
 
-// fetchAbstract(30072743);
-// fetchAbstract(30559420);
-// fetchAbstract(25081398);
+export default paperFactory;
