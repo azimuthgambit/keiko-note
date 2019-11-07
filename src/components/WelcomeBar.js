@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PaperForm from './PaperForm';
 
 class WelcomeBar extends React.Component {
   static propTypes = {
@@ -8,15 +7,11 @@ class WelcomeBar extends React.Component {
     byline:PropTypes.string.isRequired,
     href:PropTypes.string.isRequired,
     uid:PropTypes.string,
-    logout:PropTypes.func.isRequired,
-    addPaper:PropTypes.func.isRequired
+    randomPaper:PropTypes.func.isRequired,
+    loadSamplePapers:PropTypes.func.isRequired,
+    togglePaperForm:PropTypes.func.isRequired,
+    logout:PropTypes.func.isRequired
   }
-
-  state = {
-    hidePaperForm: true
-  }
-
-  togglePaperForm = () => { this.setState({ hidePaperForm : !this.state.hidePaperForm }) };
 
   render() {
 
@@ -34,50 +29,46 @@ class WelcomeBar extends React.Component {
       </div>
     );
 
-    const enterPaperBtn = this.props.uid ? <button onClick={this.togglePaperForm} >NEW PAPER</button> : <div></div> ;
-    const loadSamplesBtn = this.props.uid ? <button onClick={this.props.loadSamplePapers} >SAMPLE PAPERS</button> : <div></div> ;
-    const logoutBtn = this.props.uid ? <button onClick={this.props.logout}>Log Out</button> : <div></div> ;
+    // const enterPaperBtn = this.props.uid ? <button onClick={this.props.togglePaperForm} >NEW PAPER</button> : <div></div> ;
+    // const loadSamplesBtn = this.props.uid ? <button onClick={this.props.loadSamplePapers} >SAMPLE PAPERS</button> : <div></div> ;
+    // const logoutBtn = this.props.uid ? <button onClick={this.props.logout}>Log Out</button> : <div></div> ;
+
+    const enterPaperBtn = <button onClick={this.props.togglePaperForm} >ENTER PAPER</button>;
+    const randomPaperBtn = <button onClick={this.props.randomPaper} >RANDOM PAPER</button>;
+    const loadSamplesBtn = <button onClick={this.props.loadSamplePapers} >SAMPLE PAPERS</button>;
+    const logoutBtn = <button onClick={this.props.logout}>LOG OUT</button>;
 
     const buttonsRow = (
       <div className="container buttons-row modal-fade">
         {enterPaperBtn}
+        {randomPaperBtn}
         {loadSamplesBtn}
         {logoutBtn}
       </div>
     );
 
-    const paperFormDiv = (
-      <PaperForm 
-        hidePaperForm={this.state.hidePaperForm}
-        togglePaperForm={this.togglePaperForm}
-        addPaper={this.props.addPaper}
-      />
-    );
-    
     if (!this.props.uid) {
         return (
           <div className="welcome">
             {welcomeBar}
           </div>
         );
-      }
-    
-    if (this.props.uid && !this.state.hidePaperForm) {
+    // } else if (this.props.uid && !this.state.hidePaperForm) {
+    } else if (this.props.uid) {
       return (
         <div className="welcome">
           {welcomeBar}
           {buttonsRow}
-          {paperFormDiv}
+        </div>
+      );
+    } else {
+      return (
+        <div className="welcome">
+          {welcomeBar}
+          {buttonsRow}
         </div>
       );
     }
-
-    return (
-      <div className="welcome">
-        {welcomeBar}
-        {buttonsRow}
-      </div>
-    );
   }
 }
 

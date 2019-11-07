@@ -197,7 +197,29 @@ button:hover {
     margin-top: 1rem;
   }
 }
-.btn-modal {
+/* The Modal (background) */
+.modal {
+  position: fixed /* Stay in place */;
+  z-index: 1 /* Sit on top */;
+  padding-top: 30vh /* Location of the box */;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #000; /* Fallback color */
+  background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+}
+.modal-form {
+  padding: 30px;
+  border-radius: 5px;
+  margin: auto;
+  width: 60%;
+  min-width: 400px;
+  background-color: #2e486b;
+}
+.btn-modal-form {
   margin-top: 1.3rem;
 }
 .cards-div {

@@ -7,9 +7,9 @@ class FetchCard extends React.Component {
     addPaper: PropTypes.func.isRequired,
   }
 
-  componentDidMount() {
-    this.delayAdder();
-  }
+  // componentDidMount() {
+  //   this.delayAdder();
+  // }
     
   delayAdder = async () => {
     const papersArr = [30072743, 30559420, 25081398];

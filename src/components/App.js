@@ -3,15 +3,16 @@ import firebase from 'firebase/app';
 import base, { firebaseApp } from "../base";
 import Login from "./Login";
 import WelcomeBar from "./WelcomeBar";
+import PaperForm from './PaperForm';
+import paperFactory from "../PaperFactory";
 import CardSection from "./CardSection";
 import samplePapers from "../sample-papers";
-
-import FetchCard from './FetchCard';
 
 class App extends React.Component {
   state = {
     papers: {},
-    uid: null
+    uid: null,
+    hidePaperForm: true
   };
   
   componentDidMount() {
@@ -106,6 +107,36 @@ class App extends React.Component {
       await this.addPaperDelay(samplePapers[key]);
     }
   }
+
+  togglePaperForm = () => { 
+    this.setState({ hidePaperForm : !this.state.hidePaperForm }) 
+  };
+
+  randomPaper = () => {
+    // range of valid pubmed ID values
+    const max = 31696199;
+    const min = 17000000;  // or 01200000 alternatively
+    const spread = max - min;
+    const random = Math.floor(Math.random() * spread) + min;
+    this.fetchPaper(random);
+  }
+
+  fetchPaper = async (pubMed) => {
+    const apiLink = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&rettype=abstract&id=${pubMed}`; // returns xml
+    return (
+      fetch(apiLink, {mode: 'cors'})
+      .then(response => response.text())
+      .then(xml => paperFactory(xml))
+      .then(paper => this.addPaper(paper))
+      .catch(error => this.fetchError(error))
+    );
+  }
+
+  fetchError = error => {
+    console.log(error);
+    this.randomPaper();
+    // alert(`Unable to fetch that paper, please try again.`);
+  }
   
   render() {
     
@@ -116,8 +147,9 @@ class App extends React.Component {
         href="http://www.azimuthgambit.com"
         uid={this.state.uid}
         logout={this.logout}
-        addPaper={this.addPaper}
+        randomPaper={this.randomPaper}
         loadSamplePapers={this.loadSamplePapers}
+        togglePaperForm={this.togglePaperForm}
       />
     );
 
@@ -132,9 +164,12 @@ class App extends React.Component {
       />
     );
 
-    const fetchCard = (
-      <FetchCard 
-        addPaper={this.addPaper}
+    const newPaperDiv = (
+      <PaperForm 
+        hidePaperForm={this.state.hidePaperForm}
+        togglePaperForm={this.togglePaperForm}
+        addPaper={this.props.addPaper}
+        fetchPaper={this.fetchPaper}
       />
     );
 
@@ -146,15 +181,23 @@ class App extends React.Component {
           {login}
         </div>
       );
+    } else if (this.state.uid && !this.state.hidePaperForm) {
+      return (
+        <div>
+          {welcomeBar}
+          {newPaperDiv}
+          {cardSection}
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          {welcomeBar}
+          {cardSection}
+        </div>
+      );
     }
     
-    return (
-      <div>
-        {welcomeBar}
-        {fetchCard}
-        {cardSection}
-      </div>
-    );
   }
 
 }

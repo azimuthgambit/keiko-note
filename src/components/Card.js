@@ -68,7 +68,7 @@ class Card extends React.Component {
             <h6 className='bold card-title' >{titleCard}</h6>
           </a> 
           <p className='card-authors'>
-            {authors} et al. 
+            {authors}, et al. 
             <span>   </span> <i>{journalCard}</i> {yearCard} <span>   </span> 
             {/* <a className='card-link' href={pubMedLink()} rel='noopener noreferrer' target='_blank'>pubmed</a>  */}
           </p>

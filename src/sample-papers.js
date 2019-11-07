@@ -1,7 +1,7 @@
 const samplePapers = {
   paper1: {
     title: "Contribution of noncoding pathogenic variants to RPGRIP1-mediated inherited retinal degeneration.",
-    authors: "Jamshidi F, Place EM, Mehrotra S, Navarro-Gomez D, Maher M, Branham KE, Valkanas E, Cherry TJ, Lek M, MacArthur D, Pierce EA, Bujakowska KM.",
+    authors: "Jamshidi F, Place EM, Mehrotra S",
     journal: "Genet Med",
     year: "2018",
     timestamp: 1568682447498,
@@ -13,7 +13,7 @@ const samplePapers = {
 
   paper2: {
     title: "Effect of an intravitreal antisense oligonucleotide on vision in Leber congenital amaurosis due to a photoreceptor cilium defect.",
-    authors: "Cideciyan AV, Jacobson SG, Drack AV, Ho AC, Charng J, Garafalo AV, Roman AJ, Sumaroka A, Han IC, Hochstedler MD, Pfeifer WL, Sohn EH, Taiel M, Schwartz MR, Biasutto P, Wit W, Cheetham ME, Adamson P, Rodman DM, Platenburg G, Tome MD, Balikova I, Nerinckx F, Zaeytijd J, Van Cauwenbergh C, Leroy BP, Russell SR.",
+    authors: "Cideciyan AV, Jacobson SG, Drack AV",
     journal: "Nat Med",
     year: "2019",
     timestamp: 1568682447499,

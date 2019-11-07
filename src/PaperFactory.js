@@ -50,7 +50,8 @@ function paperFactory(xml) {
   let abstract;
   // handle different possible formatting
   if (!abstractText) {
-    abstract = null;
+    abstract = "(empty)";
+    // abstract = null;
   } else if (abstractText.length === 1 && abstractText.attributes === undefined) {
     abstract = abstractText[0].textContent;
   } else if (abstractText.length > 1) {
@@ -70,8 +71,8 @@ function paperFactory(xml) {
     abstract = abstractArr.join(' ');
   }
 
-  const keywords = '';
-  const findings = '';
+  const keywords = '...';
+  const findings = '...';
 
   return { title, authors, journal, year, timestamp, pubMed, keywords, findings, abstract }
 };
