@@ -69,11 +69,26 @@ class App extends React.Component {
   addPaper = paper => {
     // take copy of state
     const papers = { ...this.state.papers };
+    // check if paper ID already exists in database
+    if (papers[paper.pubMed]) {
+      alert('sorry, this paper has already been added.');
+      return;
+    }
     // add new paper to papers variable
-    papers[`paper${Date.now()}`] = paper;
+    // papers[`paper${Date.now()}`] = paper;
+    papers[`${paper.pubMed}`] = paper;
     // set the new papers object to state
     this.setState({ papers });
   };
+
+  updatePaper = (pubMed, field, content) => {
+    // alert('time to update: ' + pubMed + ' : ' + field + ' : ' + content);
+    // take copy of state
+    const papers = { ...this.state.papers };
+    papers[`${pubMed}`][`${field}`] = content;
+    // set the new papers object to state
+    this.setState({ papers });
+  }
 
   deletePaper = key => {
     // take copy of state
@@ -161,6 +176,7 @@ class App extends React.Component {
       <CardSection 
         papers={this.state.papers}
         deletePaper={this.deletePaper}
+        updatePaper={this.updatePaper}
       />
     );
 

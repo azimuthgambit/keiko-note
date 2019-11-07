@@ -116,7 +116,8 @@ body {
 }
 @media (min-width: 570px) {
   .welcome-row {
-    padding-top: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
   }
 }
 .welcome-byline {
@@ -337,7 +338,7 @@ p {
     font-size: 4.2rem;
   }
   h3 {
-    font-size: 3.6rem;
+    font-size: 3.2rem;
   }
   h4 {
     font-size: 3rem;
