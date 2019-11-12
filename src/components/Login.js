@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Login = (props) => (
   <nav className="container login modal-fade">
-    <p>Please log in to view and manage your notebook. (3rd party cookies must be enabled for this.)</p>
+    <p>Please log in to view and manage your notebook. (3rd party cookies must be enabled.)</p>
     <div className="login-row">
       <button 
         className="login-btn github" 
