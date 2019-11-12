@@ -29,20 +29,12 @@ class WelcomeBar extends React.Component {
       </div>
     );
 
-    // const enterPaperBtn = this.props.uid ? <button onClick={this.props.togglePaperForm} >NEW PAPER</button> : <div></div> ;
-    // const loadSamplesBtn = this.props.uid ? <button onClick={this.props.loadSamplePapers} >SAMPLE PAPERS</button> : <div></div> ;
-    // const logoutBtn = this.props.uid ? <button onClick={this.props.logout}>Log Out</button> : <div></div> ;
-
-    const enterPaperBtn = <button onClick={this.props.togglePaperForm} >ENTER PAPER</button>;
-    const randomPaperBtn = <button onClick={this.props.randomPaper} >RANDOM PAPER</button>;
-    const loadSamplesBtn = <button onClick={this.props.loadSamplePapers} >SAMPLE PAPERS</button>;
+    const addPaperBtn = <button onClick={this.props.togglePaperForm} >ADD PAPER</button>;
     const logoutBtn = <button onClick={this.props.logout}>LOG OUT</button>;
 
     const buttonsRow = (
       <div className="container buttons-row modal-fade">
-        {enterPaperBtn}
-        {randomPaperBtn}
-        {loadSamplesBtn}
+        {addPaperBtn}
         {logoutBtn}
       </div>
     );
@@ -53,7 +45,6 @@ class WelcomeBar extends React.Component {
             {welcomeBar}
           </div>
         );
-    // } else if (this.props.uid && !this.state.hidePaperForm) {
     } else if (this.props.uid) {
       return (
         <div className="welcome">

@@ -61,6 +61,8 @@ class ContentEditable extends React.Component {
       case 'Escape':
         this.save();
         break;
+      default:
+        return;
     }
   };
 

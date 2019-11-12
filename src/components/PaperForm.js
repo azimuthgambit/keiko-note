@@ -6,7 +6,12 @@ class PaperForm extends React.Component {
   pubMedRef = React.createRef();
 
   static propTypes = {
-    fetchPaper:PropTypes.func.isRequired
+    hidePaperForm:PropTypes.bool.isRequired,
+    togglePaperForm:PropTypes.func.isRequired,
+    addPaper:PropTypes.func.isRequired,
+    fetchPaper:PropTypes.func.isRequired,
+    loadSamplePapers:PropTypes.func.isRequired,
+    randomPaper:PropTypes.func.isRequired
   }
 
   componentDidMount() {
@@ -20,7 +25,6 @@ class PaperForm extends React.Component {
   enterPaper = (e) => {
     e.preventDefault();
     const paper = this.pubMedRef.current.value;
-    console.log(paper)
     if (!paper) {
       alert('PubMed ID is required.');
       return;
@@ -34,6 +38,16 @@ class PaperForm extends React.Component {
     setTimeout(() => this.props.fetchPaper(paper), 100);
   }
 
+  randomPaper = () => {
+    this.props.randomPaper();
+    this.fadeOutForm();
+  }
+
+  loadSamplePapers = () => {
+    this.props.loadSamplePapers();
+    this.fadeOutForm();
+  }
+  
   cancelForm = () => {
     // get confirmation from user
     // if (!window.confirm("Are you sure you want to cancel?")) { return; }
@@ -50,15 +64,27 @@ class PaperForm extends React.Component {
 
   render() {
 
+    // const randomPaperBtn = <button onClick={this.props.randomPaper} >RANDOM PAPER</button>;
+    // const loadSamplesBtn = <button onClick={this.props.loadSamplePapers} >SAMPLE PAPERS</button>;
+    // {randomPaperBtn}
+    // {loadSamplesBtn}
+     //  e.g. 30072743  or  30559420  or  25081398 
+
     return (
       <form className="modal" ref={this.formRef} onSubmit={this.enterPaper} >
         <div className="container modal-form">
-          <label>Enter a PubMed ID: e.g. 30072743  or  30559420  or  25081398 </label>
-          <input name="pubMed" ref={this.pubMedRef} type="text" placeholder="PubMed ID (must be 8 digits)" required />
+          <div className="buttons-row">
+            <button type="button" className="btn-modal-form" onClick={this.randomPaper} >RANDOM PAPER</button>
+            <button type="button" className="btn-modal-form" onClick={this.loadSamplePapers} >SAMPLE PAPERS</button>
+            <button type="button" className="btn-modal-form cancel" onClick={this.cancelForm}>Cancel / Close</button>
+          </div>
+          {/* <br></br><br></br> */}
+          <hr></hr><br></br>
+          <label>Enter PubMed ID:</label>
+          <input name="pubMed" ref={this.pubMedRef} type="text" placeholder="(must be 8 digits)" required />
           <input type="submit" hidden />  
           <div className="buttons-row">
             <button type="button" className="btn-modal-form" onClick={this.enterPaper}>Add Paper</button>
-            <button type="button" className="btn-modal-form" onClick={this.cancelForm}>Cancel / Close</button>
           </div>
         </div>
       </form>

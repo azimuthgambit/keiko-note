@@ -149,8 +149,12 @@ class App extends React.Component {
 
   fetchError = error => {
     console.log(error);
+    if (error.message === 'Failed to fetch') {
+      console.error(error.message);
+      alert(`Unable to fetch that paper, please try again.`);
+      return;
+    }
     this.randomPaper();
-    // alert(`Unable to fetch that paper, please try again.`);
   }
   
   render() {
@@ -180,12 +184,14 @@ class App extends React.Component {
       />
     );
 
-    const newPaperDiv = (
+    const addPaperDiv = (
       <PaperForm 
         hidePaperForm={this.state.hidePaperForm}
         togglePaperForm={this.togglePaperForm}
-        addPaper={this.props.addPaper}
+        addPaper={this.addPaper}
         fetchPaper={this.fetchPaper}
+        loadSamplePapers={this.loadSamplePapers}
+        randomPaper={this.randomPaper}
       />
     );
 
@@ -201,7 +207,7 @@ class App extends React.Component {
       return (
         <div>
           {welcomeBar}
-          {newPaperDiv}
+          {addPaperDiv}
           {cardSection}
         </div>
       );
