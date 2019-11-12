@@ -51,7 +51,7 @@ class PaperForm extends React.Component {
   render() {
 
     return (
-      <form className={`modal`} ref={this.formRef} onSubmit={this.enterPaper} >
+      <form className="modal" ref={this.formRef} onSubmit={this.enterPaper} >
         <div className="container modal-form">
           <label>Enter a PubMed ID: e.g. 30072743  or  30559420  or  25081398 </label>
           <input name="pubMed" ref={this.pubMedRef} type="text" placeholder="PubMed ID (must be 8 digits)" required />

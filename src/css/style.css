@@ -166,9 +166,9 @@ button {
 button:hover {
   background-color: rgba(255,255,255,0.18);
 }
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   button {
-    height: 3.5rem;
+    height: 3rem;
   }
 }
 @media (min-width: 570px) {
@@ -187,7 +187,7 @@ button:hover {
 .buttons-row > * {
   margin-top: 0.5rem;
 }
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .buttons-row {
     -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;
@@ -195,7 +195,7 @@ button:hover {
     width: 100%;
   }
   .buttons-row > * {
-    margin-top: 1rem;
+    margin-top: 0.3rem;
   }
 }
 /* The Modal (background) */
@@ -217,7 +217,7 @@ button:hover {
   border-radius: 5px;
   margin: auto;
   width: 60%;
-  min-width: 400px;
+  min-width: 300px;
   background-color: #2e486b;
 }
 .btn-modal-form {
