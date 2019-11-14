@@ -1,5 +1,5 @@
 {
-  "name": "keiko_note",
+  "name": "keikonote",
   "version": "0.0.2",
   "private": true,
   "devDependencies": {
@@ -17,6 +17,7 @@
     "serve": "^10.1.1",
     "stylus": "0.54.5"
   },
+  "license": "MIT",
   "scripts": {
     "dev": "react-scripts start",
     "start": "react-scripts start",
