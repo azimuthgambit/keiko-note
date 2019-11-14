@@ -1,6 +1,6 @@
 {
-  "name": "cotd",
-  "version": "0.0.3",
+  "name": "keiko_note",
+  "version": "0.0.2",
   "private": true,
   "devDependencies": {
     "concurrently": "4.1.0",
