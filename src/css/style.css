@@ -1,18 +1,27 @@
+.abstract {
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height 520ms ease;
+  transition: max-height 520ms ease;
+}
+.abstract-full {
+  max-height: 1000px !important;
+}
 .card-enter {
   opacity: 0;
 }
 .card-enter-active {
   opacity: 1;
-  -webkit-transition: opacity 200ms;
-  transition: opacity 200ms;
+  -webkit-transition: opacity 400ms;
+  transition: opacity 400ms;
 }
 .card-exit {
   opacity: 1;
 }
 .card-exit-active {
   opacity: 0;
-  -webkit-transition: opacity 200ms;
-  transition: opacity 200ms;
+  -webkit-transition: opacity 400ms;
+  transition: opacity 400ms;
 }
 .cards-div div.card-exit {
   height: 0;
@@ -23,9 +32,9 @@
 }
 .modal-fade {
   -webkit-animation-name: fade;
-  -webkit-animation-duration: 200ms;
+  -webkit-animation-duration: 400ms;
   animation-name: fade;
-  animation-duration: 200ms;
+  animation-duration: 400ms;
 }
 @-webkit-keyframes fade {
   from {
@@ -156,8 +165,8 @@ button {
   text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
-  background-color: rgba(255,255,255,0.09);
-  border: 1px solid #ccc;
+  background-color: rgba(255,255,255,0.12);
+  border: none;
   border-radius: 4px;
   cursor: pointer;
   -webkit-transition-duration: 200ms;
@@ -187,7 +196,7 @@ button:hover {
 .buttons-row > * {
   margin-top: 0.5rem;
 }
-@media (max-width: 500px) {
+@media (max-width: 700px) {
   .buttons-row {
     -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;
@@ -198,7 +207,6 @@ button:hover {
     margin-top: 0.5rem;
   }
 }
-/* The Modal (background) */
 .modal {
   position: fixed /* Stay in place */;
   z-index: 1 /* Sit on top */;
@@ -396,12 +404,6 @@ select:focus {
   border: 1px solid #33c3f0;
   outline: 0;
 }
-/* label,
-legend {
-  display: block;
-  margin-bottom: .5rem;
-  font-weight: 600; 
-} */
 fieldset {
   padding: 0;
   border-width: 0;

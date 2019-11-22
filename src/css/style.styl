@@ -34,6 +34,7 @@ body
 // define responsive breakpoint variable
 small-width = 500px
 phone-width = 570px
+desk-width  = 700px
 // dark theme color layers per Material Design best practices
 welcomeBlue = rgb(46, 72, 107, 0.7)
 formBlue = rgb(46, 72, 107, 1.0)
@@ -96,8 +97,9 @@ button
   text-transform: uppercase
   text-decoration: none
   white-space: nowrap
-  background-color: layer2
-  border: 1px solid #ccc
+  background-color: layer3
+  // border: 1px solid #ccc
+  border: none
   border-radius: 4px
   cursor: pointer
   transition-duration:200ms
@@ -115,14 +117,13 @@ button
   justify-content: space-between
   & > *
     margin-top: .5rem
-  @media (max-width: small-width)
+  @media (max-width: desk-width)
     flex-direction: column-reverse
     width:100%
     & > *
       margin-top: .5rem
 
 // modal form
-/* The Modal (background) */
 .modal
   // display: none; /* Hidden by default */
   // display:grid
@@ -209,6 +210,7 @@ button
   &:hover
     background-color: layer4
 
+
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 h1, h2, h3, h4, h5, h6 {
@@ -275,12 +277,6 @@ textarea:focus,
 select:focus {
   border: 1px solid #33C3F0;
   outline: 0; }
-/* label,
-legend {
-  display: block;
-  margin-bottom: .5rem;
-  font-weight: 600; 
-} */
 fieldset {
   padding: 0;
   border-width: 0; }

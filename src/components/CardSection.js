@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from './Card';
-// import FetchCard from './FetchCard';
 import PropTypes from 'prop-types';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
