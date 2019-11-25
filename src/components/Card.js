@@ -116,10 +116,10 @@ class Card extends React.Component {
     const rectWidth = this.cardRef.current.getBoundingClientRect().width;
     this.cardRef.current.style.width = `${rectWidth}px`;
     // set card to fade out
-    this.cardRef.current.style.transition = 'opacity 200ms';
+    this.cardRef.current.style.transition = 'opacity 350ms';
     this.cardRef.current.style.opacity = 0;
     // pause to allow fadeout before actually deleting
-    setTimeout(() => this.props.deletePaper(this.props.index), 400);
+    setTimeout(() => this.props.deletePaper(this.props.index), 150);
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {

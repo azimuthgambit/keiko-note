@@ -2,14 +2,14 @@ anim-time = 400ms
 
 .abstract
   opacity: 1;
-  transition: opacity anim-time ease
+  transition: opacity anim-time*.5 ease
 
 .abstract.hide
   opacity: 0
 
 .absWrap
   max-height: 0
-  transition: max-height anim-time ease
+  transition: max-height anim-time*.5 ease
 
 /////////////////
 
@@ -19,7 +19,7 @@ anim-time = 400ms
 .card-enter-active
   opacity:1
   transition: 
-    opacity anim-time
+    opacity anim-time*1.5
 
 .card-exit
   opacity:1
@@ -27,7 +27,7 @@ anim-time = 400ms
 .card-exit-active
   opacity:0
   transition: 
-    opacity anim-time
+    opacity anim-time*1.5
 
 .cards-div div.card-exit {
   height:0;

@@ -19,7 +19,7 @@ class CardSection extends React.Component {
       <CSSTransition
         classNames="card"
         key={key}
-        timeout={{ enter:300, exit:300 }}
+        timeout={{ enter:500, exit:500 }}
       >
         <Card
           key={key}

@@ -75,7 +75,6 @@ class App extends React.Component {
       return;
     }
     // add new paper to papers variable
-    // papers[`paper${Date.now()}`] = paper;
     papers[`${paper.pubMed}`] = paper;
     // set the new papers object to state
     this.setState({ papers });
@@ -111,7 +110,7 @@ class App extends React.Component {
     return new Promise((resolve, reject) => {
       setTimeout( () => {
         resolve();
-      }, 400)
+      }, 550)
     });
   };
 

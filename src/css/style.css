@@ -1,31 +1,31 @@
 .abstract {
   opacity: 1;
-  -webkit-transition: opacity 400ms ease;
-  transition: opacity 400ms ease;
+  -webkit-transition: opacity 200ms ease;
+  transition: opacity 200ms ease;
 }
 .abstract.hide {
   opacity: 0;
 }
 .absWrap {
   max-height: 0;
-  -webkit-transition: max-height 400ms ease;
-  transition: max-height 400ms ease;
+  -webkit-transition: max-height 200ms ease;
+  transition: max-height 200ms ease;
 }
 .card-enter {
   opacity: 0;
 }
 .card-enter-active {
   opacity: 1;
-  -webkit-transition: opacity 400ms;
-  transition: opacity 400ms;
+  -webkit-transition: opacity 600ms;
+  transition: opacity 600ms;
 }
 .card-exit {
   opacity: 1;
 }
 .card-exit-active {
   opacity: 0;
-  -webkit-transition: opacity 400ms;
-  transition: opacity 400ms;
+  -webkit-transition: opacity 600ms;
+  transition: opacity 600ms;
 }
 .cards-div div.card-exit {
   height: 0;
