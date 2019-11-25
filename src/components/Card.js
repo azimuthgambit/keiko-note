@@ -21,7 +21,8 @@ class Card extends React.Component {
   }
 
   state = {
-    absHeight: 0
+    absHeight: 0,
+    showAbstract: false
   }
 
   cardRef = React.createRef();
@@ -34,8 +35,7 @@ class Card extends React.Component {
   }
   
   toggleAbstract = () => {
-    let mode = this.abstractRef.current.classList.contains('hide') ? 'show' : 'hide' ;
-    if (mode === 'show') {
+    if (!this.state.showAbstract) {
       // first let the card slide open
       setTimeout(() => {
         this.absWrapRef.current.style.maxHeight = `${this.state.absHeight}px`;
@@ -43,14 +43,16 @@ class Card extends React.Component {
       // then have the text fade in
       setTimeout(() => {
         this.abstractRef.current.classList.toggle('hide');
-      }, 400)
-    } else if (mode === 'hide') {
+      }, 200)
+      this.setState({ showAbstract: true })
+    } else if (this.state.showAbstract) {
       // first have the text fade out
       this.abstractRef.current.classList.toggle('hide');
       // then have the card slide closed
       setTimeout(() => {
         this.absWrapRef.current.style.maxHeight = '0';
-      }, 400)
+      }, 200)
+      this.setState({ showAbstract: false })
     }
   }
 
