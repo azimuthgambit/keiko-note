@@ -20,11 +20,38 @@ class Card extends React.Component {
     updatePaper: PropTypes.func.isRequired
   }
 
+  state = {
+    absHeight: 0
+  }
+
   cardRef = React.createRef();
   abstractRef = React.createRef();
+  absWrapRef = React.createRef();
 
+  componentDidMount() {
+    const absHeight = this.abstractRef.current.getBoundingClientRect().height;
+    this.setState({ absHeight });
+  }
+  
   toggleAbstract = () => {
-    this.abstractRef.current.classList.toggle('abstract-full');
+    let mode = this.abstractRef.current.classList.contains('hide') ? 'show' : 'hide' ;
+    if (mode === 'show') {
+      // first let the card slide open
+      setTimeout(() => {
+        this.absWrapRef.current.style.maxHeight = `${this.state.absHeight}px`;
+      }, 10);
+      // then have the text fade in
+      setTimeout(() => {
+        this.abstractRef.current.classList.toggle('hide');
+      }, 400)
+    } else if (mode === 'hide') {
+      // first have the text fade out
+      this.abstractRef.current.classList.toggle('hide');
+      // then have the card slide closed
+      setTimeout(() => {
+        this.absWrapRef.current.style.maxHeight = '0';
+      }, 400)
+    }
   }
 
   render() {
@@ -72,7 +99,9 @@ class Card extends React.Component {
             />
           </p>
           <span className='bold abstract-toggle' onClick={this.toggleAbstract} > Abstract </span>
-          <p className='abstract' ref={this.abstractRef} > {abstract} </p>
+          <div className='absWrap' ref={this.absWrapRef}>
+            <p className='abstract hide' ref={this.abstractRef} > {abstract} </p>
+          </div>
         </div>
       </div>
     )

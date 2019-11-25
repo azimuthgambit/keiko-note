@@ -1,14 +1,17 @@
-anim-time = 400ms
+anim-time = 500ms
 
 .abstract
-  max-height: 0
-  overflow: hidden
-  // opacity: 0
-  // display: none
-  transition: max-height anim-time*1.3 ease
+  opacity: 1;
+  transition: opacity anim-time ease
 
-.abstract-full
-  max-height: 1000px !important
+.abstract.hide
+  opacity: 0
+
+.absWrap
+  max-height: 0
+  transition: max-height anim-time ease
+
+/////////////////
 
 .card-enter
   opacity:0

@@ -1,27 +1,31 @@
 .abstract {
-  max-height: 0;
-  overflow: hidden;
-  -webkit-transition: max-height 520ms ease;
-  transition: max-height 520ms ease;
+  opacity: 1;
+  -webkit-transition: opacity 500ms ease;
+  transition: opacity 500ms ease;
 }
-.abstract-full {
-  max-height: 1000px !important;
+.abstract.hide {
+  opacity: 0;
+}
+.absWrap {
+  max-height: 0;
+  -webkit-transition: max-height 500ms ease;
+  transition: max-height 500ms ease;
 }
 .card-enter {
   opacity: 0;
 }
 .card-enter-active {
   opacity: 1;
-  -webkit-transition: opacity 400ms;
-  transition: opacity 400ms;
+  -webkit-transition: opacity 500ms;
+  transition: opacity 500ms;
 }
 .card-exit {
   opacity: 1;
 }
 .card-exit-active {
   opacity: 0;
-  -webkit-transition: opacity 400ms;
-  transition: opacity 400ms;
+  -webkit-transition: opacity 500ms;
+  transition: opacity 500ms;
 }
 .cards-div div.card-exit {
   height: 0;
@@ -32,9 +36,9 @@
 }
 .modal-fade {
   -webkit-animation-name: fade;
-  -webkit-animation-duration: 400ms;
+  -webkit-animation-duration: 500ms;
   animation-name: fade;
-  animation-duration: 400ms;
+  animation-duration: 500ms;
 }
 @-webkit-keyframes fade {
   from {
