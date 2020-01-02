@@ -19,12 +19,12 @@ class WelcomeBar extends React.Component {
       <div className="container">
         <div className="welcome-row">
           <h3 className="welcome-heading"><span> {this.props.tagline} </span></h3> 
-          <h6 className="welcome-byline"><span> by </span>
+          <p className="welcome-byline"><span> by </span>
             <a href={this.props.href} 
               target="_blank"
               rel="noopener noreferrer"
             >{this.props.byline}</a>
-          </h6>
+          </p>
         </div>
       </div>
     );
