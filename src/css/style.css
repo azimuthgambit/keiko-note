@@ -79,6 +79,9 @@ body {
   background-color: #121212;
   color: #fffafa;
 }
+* {
+  box-sizing: border-box;
+}
 /* Layout
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .container {
@@ -209,10 +212,6 @@ button:hover {
 }
 .btn-modal-form {
   margin-top: 1.3rem;
-}
-.cards-div {
-  -webkit-padding-start: 0;
-          padding-inline-start: 0;
 }
 .card {
   position: relative;

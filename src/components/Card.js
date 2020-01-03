@@ -80,6 +80,7 @@ class Card extends React.Component {
           <p>
             <span className='bold card-keywords'>Keywords: </span>
             <ContentEditable 
+              // className='editable'
               value={keywordsCard}
               pubMed={pubMed}
               field="keywords"
@@ -89,6 +90,7 @@ class Card extends React.Component {
           <p>
             <span className='bold card-findings'>Findings: </span>
             <ContentEditable
+              // className='editable'
               value={findingsCard}
               pubMed={pubMed}
               field="findings"
@@ -118,60 +120,3 @@ class Card extends React.Component {
 }
 
 export default Card;
-
-
-// toggleAbstract = () => {
-//   if (!this.state.showAbstract) {
-//     // first let the card slide open
-//     setTimeout(() => {
-//       this.absWrapRef.current.style.maxHeight = `${this.state.absHeight}px`;
-//     }, 10);
-//     // then have the text fade in
-//     setTimeout(() => {
-//       this.abstractRef.current.classList.toggle('hide');
-//     }, 200)
-//     this.setState({ showAbstract: true })
-//   } else if (this.state.showAbstract) {
-//     // first have the text fade out
-//     this.abstractRef.current.classList.toggle('hide');
-//     // then have the card slide closed
-//     setTimeout(() => {
-//       this.absWrapRef.current.style.maxHeight = '0';
-//     }, 200)
-//     this.setState({ showAbstract: false })
-//   }
-// }
-
-
-// state = {
-//   absHeight: 0,
-//   showAbstract: false
-// }
-
-// componentDidMount() {
-//   const absHeight = this.abstractRef.current.getBoundingClientRect().height;
-//   this.setState({ absHeight });
-// }
-
-// getSnapshotBeforeUpdate(prevProps, prevState) {
-//   return this.cardRef.current.getBoundingClientRect();
-// }
-
-// // maintain card width while smushing
-// const rectWidth = this.cardRef.current.getBoundingClientRect().width;
-// this.cardRef.current.style.width = `${rectWidth}px`;
-
-
-// componentDidUpdate(prevProps, prevState, snapshot) {
-//   if (!snapshot) return;
-//   const cardCurrent = this.cardRef.current;
-//   const deltaY = snapshot.top - cardCurrent.offsetTop;
-//   if (deltaY === 0) return;
-//   // apply FLIP method to animate
-//   // cardCurrent.style.animation = 'cardslide 200ms forwards';
-//   // cardCurrent.style.transform = `translateY(${deltaY}px)`;
-//   // cardCurrent.addEventListener('animationend',()=>{
-//   //   cardCurrent.style.animation = '';
-//   //   cardCurrent.style.transform = '';
-//   // }, {once:true});
-// }

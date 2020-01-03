@@ -74,7 +74,7 @@ class ContentEditable extends React.Component {
     }
     return (
       <span
-        className={editing ? 'editing' : ''}
+        className={editing ? 'editing editable' : 'editable'}
         onClick={editOnClick ? this.toggleEdit : undefined}
         contentEditable={editing}
         ref={(domNode) => {
@@ -82,7 +82,7 @@ class ContentEditable extends React.Component {
         }}
         onBlur={this.save}
         onKeyDown={this.handleKeyDown}
-        {...this.props}
+        // {...this.props} // not necessary, throws warnings
       >
         {this.props.value}
       </span>
