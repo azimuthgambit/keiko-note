@@ -8,31 +8,9 @@
 }
 .absWrap {
   max-height: 0;
-  -webkit-transition: max-height 200ms ease;
-  transition: max-height 200ms ease;
 }
-.card-enter {
-  opacity: 0;
-}
-.card-enter-active {
-  opacity: 1;
-  -webkit-transition: opacity 600ms;
-  transition: opacity 600ms;
-}
-.card-exit {
-  opacity: 1;
-}
-.card-exit-active {
-  opacity: 0;
-  -webkit-transition: opacity 600ms;
-  transition: opacity 600ms;
-}
-.cards-div div.card-exit {
-  height: 0;
-}
-.cards-div div.card-exit-active,
-.cards-div div.card-exit-done {
-  position: absolute;
+.absWrap.full {
+  max-height: 100%;
 }
 .modal-fade {
   -webkit-animation-name: fade;
@@ -105,7 +83,7 @@ body {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .container {
   min-width: 300px;
-  max-width: 800px;
+  max-width: 1000px;
   margin: auto;
   padding: 0 1rem;
 }
@@ -262,15 +240,16 @@ button:hover {
   right: 5px;
   border: none;
   font-weight: 100;
-  background-color: rgba(255,255,255,0);
-}
-.card-delete-btn:hover {
   background-color: rgba(255,255,255,0.07);
 }
+.card-delete-btn:hover {
+  background-color: rgba(255,255,255,0.09);
+}
 .card-title {
+  font-family: Cambria, Times, serif;
   margin-right: 3.2rem;
   color: #fa8072;
-  font-family: Cambria, Times, serif;
+  letter-spacing: 0.2px;
 }
 .card-link {
   text-decoration: none;
@@ -287,9 +266,15 @@ button:hover {
 .abstract-toggle {
   color: #86cc5f;
   cursor: pointer;
+  background-color: rgba(255,255,255,0.07);
+  padding: 2px 1rem;
+  border-radius: 5px;
+  display: inline-block;
+  position: relative;
+  left: 1rem;
 }
 .abstract-toggle:hover {
-  background-color: rgba(255,255,255,0.15);
+  background-color: rgba(255,255,255,0.09);
 }
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -320,7 +305,7 @@ h5 {
   font-size: 1.8rem;
 }
 h6 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 /* Larger than breakpoint */
 @media (min-width: 570px) {

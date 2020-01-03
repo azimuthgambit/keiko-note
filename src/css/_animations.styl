@@ -9,34 +9,37 @@ anim-time = 400ms
 
 .absWrap
   max-height: 0
-  transition: max-height anim-time*.5 ease
+  // transition: max-height anim-time*.5 ease
+
+.absWrap.full
+  max-height:100%
 
 /////////////////
 
-.card-enter
-  opacity:0
+// .card-enter
+//   opacity:0
 
-.card-enter-active
-  opacity:1
-  transition: 
-    opacity anim-time*1.5
+// .card-enter-active
+//   opacity:1
+//   transition: 
+//     opacity anim-time*1.5
 
-.card-exit
-  opacity:1
+// .card-exit
+//   opacity:1
 
-.card-exit-active
-  opacity:0
-  transition: 
-    opacity anim-time*1.5
+// .card-exit-active
+//   opacity:0
+//   transition: 
+//     opacity anim-time*1.5
 
-.cards-div div.card-exit {
-  height:0;
-}
+// .cards-div div.card-exit {
+//   height:0;
+// }
 
-.cards-div div.card-exit-active,
-.cards-div div.card-exit-done {
-  position:absolute;
-}
+// .cards-div div.card-exit-active,
+// .cards-div div.card-exit-done {
+//   position:absolute;
+// }
 
 @keyframes cardslide
   100% {transform: none}

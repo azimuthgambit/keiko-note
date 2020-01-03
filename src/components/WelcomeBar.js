@@ -48,14 +48,14 @@ class WelcomeBar extends React.Component {
     } else if (this.props.uid) {
       return (
         <div className="welcome">
-          {welcomeBar}
+          {/* {welcomeBar} */}
           {buttonsRow}
         </div>
       );
     } else {
       return (
         <div className="welcome">
-          {welcomeBar}
+          {/* {welcomeBar} */}
           {buttonsRow}
         </div>
       );

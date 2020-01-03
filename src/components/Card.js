@@ -21,7 +21,6 @@ class Card extends React.Component {
   }
 
   state = {
-    absHeight: 0,
     showAbstract: false
   }
 
@@ -29,28 +28,23 @@ class Card extends React.Component {
   abstractRef = React.createRef();
   absWrapRef = React.createRef();
 
-  componentDidMount() {
-    const absHeight = this.abstractRef.current.getBoundingClientRect().height;
-    this.setState({ absHeight });
-  }
-  
   toggleAbstract = () => {
     if (!this.state.showAbstract) {
-      // first let the card slide open
+      // absWrap opens to full height
       setTimeout(() => {
-        this.absWrapRef.current.style.maxHeight = `${this.state.absHeight}px`;
+        this.absWrapRef.current.classList.toggle('full');
       }, 10);
-      // then have the text fade in
+      // text fades in
       setTimeout(() => {
         this.abstractRef.current.classList.toggle('hide');
       }, 200)
       this.setState({ showAbstract: true })
     } else if (this.state.showAbstract) {
-      // first have the text fade out
+      // text fades out
       this.abstractRef.current.classList.toggle('hide');
-      // then have the card slide closed
+      // absWrap closes to zero height
       setTimeout(() => {
-        this.absWrapRef.current.style.maxHeight = '0';
+        this.absWrapRef.current.classList.toggle('full');
       }, 200)
       this.setState({ showAbstract: false })
     }
@@ -81,6 +75,7 @@ class Card extends React.Component {
           <p className='card-authors'>
             {authors}, et al. 
             <span>   </span> <i>{journalCard}</i> {yearCard} <span>   </span> 
+            <span className='bold abstract-toggle' onClick={this.toggleAbstract} > abstract </span>
           </p>
           <p>
             <span className='bold card-keywords'>Keywords: </span>
@@ -100,7 +95,6 @@ class Card extends React.Component {
               updatePaper={this.props.updatePaper}
             />
           </p>
-          <span className='bold abstract-toggle' onClick={this.toggleAbstract} > Abstract </span>
           <div className='absWrap' ref={this.absWrapRef}>
             <p className='abstract hide' ref={this.abstractRef} > {abstract} </p>
           </div>
@@ -112,33 +106,72 @@ class Card extends React.Component {
   deleteCard = () => {
     // get confirmation from user
     if (!window.confirm('Delete this paper?')) { return; }
-    // maintain card width while smushing
-    const rectWidth = this.cardRef.current.getBoundingClientRect().width;
-    this.cardRef.current.style.width = `${rectWidth}px`;
+
     // set card to fade out
     this.cardRef.current.style.transition = 'opacity 350ms';
     this.cardRef.current.style.opacity = 0;
+
     // pause to allow fadeout before actually deleting
-    setTimeout(() => this.props.deletePaper(this.props.index), 150);
+    setTimeout(() => this.props.deletePaper(this.props.index), 550);
   }
 
-  getSnapshotBeforeUpdate(prevProps, prevState) {
-    return this.cardRef.current.getBoundingClientRect();
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (!snapshot) return;
-    const cardCurrent = this.cardRef.current;
-    const deltaY = snapshot.top - cardCurrent.offsetTop;
-    if (deltaY === 0) return;
-    // apply FLIP method to animate
-    cardCurrent.style.animation = 'cardslide 200ms forwards';
-    cardCurrent.style.transform = `translateY(${deltaY}px)`;
-    cardCurrent.addEventListener('animationend',()=>{
-      cardCurrent.style.animation = '';
-      cardCurrent.style.transform = '';
-    }, {once:true});
-  }
 }
 
 export default Card;
+
+
+// toggleAbstract = () => {
+//   if (!this.state.showAbstract) {
+//     // first let the card slide open
+//     setTimeout(() => {
+//       this.absWrapRef.current.style.maxHeight = `${this.state.absHeight}px`;
+//     }, 10);
+//     // then have the text fade in
+//     setTimeout(() => {
+//       this.abstractRef.current.classList.toggle('hide');
+//     }, 200)
+//     this.setState({ showAbstract: true })
+//   } else if (this.state.showAbstract) {
+//     // first have the text fade out
+//     this.abstractRef.current.classList.toggle('hide');
+//     // then have the card slide closed
+//     setTimeout(() => {
+//       this.absWrapRef.current.style.maxHeight = '0';
+//     }, 200)
+//     this.setState({ showAbstract: false })
+//   }
+// }
+
+
+// state = {
+//   absHeight: 0,
+//   showAbstract: false
+// }
+
+// componentDidMount() {
+//   const absHeight = this.abstractRef.current.getBoundingClientRect().height;
+//   this.setState({ absHeight });
+// }
+
+// getSnapshotBeforeUpdate(prevProps, prevState) {
+//   return this.cardRef.current.getBoundingClientRect();
+// }
+
+// // maintain card width while smushing
+// const rectWidth = this.cardRef.current.getBoundingClientRect().width;
+// this.cardRef.current.style.width = `${rectWidth}px`;
+
+
+// componentDidUpdate(prevProps, prevState, snapshot) {
+//   if (!snapshot) return;
+//   const cardCurrent = this.cardRef.current;
+//   const deltaY = snapshot.top - cardCurrent.offsetTop;
+//   if (deltaY === 0) return;
+//   // apply FLIP method to animate
+//   // cardCurrent.style.animation = 'cardslide 200ms forwards';
+//   // cardCurrent.style.transform = `translateY(${deltaY}px)`;
+//   // cardCurrent.addEventListener('animationend',()=>{
+//   //   cardCurrent.style.animation = '';
+//   //   cardCurrent.style.transform = '';
+//   // }, {once:true});
+// }
